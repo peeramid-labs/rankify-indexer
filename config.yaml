@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: envio-indexer
+networks:
+- id: 421614
+  start_block: 0
+  contracts:
+  - name: RankifyToken
+    address:
+    - 0x21C68Aa0be617ebE09138d185BF2ff804131A8da
+    handler: src/EventHandlers.ts
+    events:
+    - event: Approval(address indexed owner, address indexed spender, uint256 value)
+    - event: DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate)
+    - event: DelegateVotesChanged(address indexed delegate, uint256 previousVotes, uint256 newVotes)
+    - event: EIP712DomainChanged()
+    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+    - event: Transfer(address indexed from, address indexed to, uint256 value)
+  - name: DAODistributor
+    address:
+    - 0xE195BA7978Dbd70844D8396b9B1D6d70ba0D17dD
+    handler: src/EventHandlers.ts
+    events:
+    - event: Debug(bytes32 distributorsId, bytes args)
+    - event: DefaultAdminDelayChangeCanceled()
+    - event: DefaultAdminDelayChangeScheduled(uint48 newDelay, uint48 effectSchedule)
+    - event: DefaultAdminTransferCanceled()
+    - event: DefaultAdminTransferScheduled(address indexed newAdmin, uint48 acceptSchedule)
+    - event: DistributionAdded(bytes32 indexed id, address distribution, address indexed initializer)
+    - event: DistributionRemoved(bytes32 indexed id)
+    - event: Instantiated(bytes32 indexed distributionId, uint256 indexed newInstanceId, uint256 indexed version, address[] instances, bytes args)
+    - event: InstantiationCostChanged(bytes32 indexed id, uint256 cost)
+    - event: RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
+    - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
+    - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
+    - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)

@@ -1,0 +1,125 @@
+type DAODistributor_Debug {
+  id: ID!
+  distributorsId: String!
+  args: String!
+}
+
+type DAODistributor_DefaultAdminDelayChangeCanceled {
+  id: ID!
+}
+
+type DAODistributor_DefaultAdminDelayChangeScheduled {
+  id: ID!
+  newDelay: BigInt!
+  effectSchedule: BigInt!
+}
+
+type DAODistributor_DefaultAdminTransferCanceled {
+  id: ID!
+}
+
+type DAODistributor_DefaultAdminTransferScheduled {
+  id: ID!
+  newAdmin: String!
+  acceptSchedule: BigInt!
+}
+
+type DAODistributor_DistributionAdded {
+  id: ID!
+  event_id: String!
+  distribution: String!
+  initializer: String!
+}
+
+type DAODistributor_DistributionRemoved {
+  id: ID!
+  event_id: String!
+}
+
+type DAODistributor_Instantiated {
+  id: ID!
+  distributionId: String!
+  newInstanceId: BigInt!
+  version: BigInt!
+  instances: [String!]!
+  args: String!
+}
+
+type DAODistributor_InstantiationCostChanged {
+  id: ID!
+  event_id: String!
+  cost: BigInt!
+}
+
+type DAODistributor_RoleAdminChanged {
+  id: ID!
+  role: String!
+  previousAdminRole: String!
+  newAdminRole: String!
+}
+
+type DAODistributor_RoleGranted {
+  id: ID!
+  role: String!
+  account: String!
+  sender: String!
+}
+
+type DAODistributor_RoleRevoked {
+  id: ID!
+  role: String!
+  account: String!
+  sender: String!
+}
+
+type DAODistributor_VersionChanged {
+  id: ID!
+  distributionId: String!
+  newRequirement_0_0: BigInt!
+  newRequirement_0_1: BigInt!
+  newRequirement_0_2: BigInt!
+  newRequirement_1: BigInt!
+  newRequirementData_0_0: BigInt!
+  newRequirementData_0_1: BigInt!
+  newRequirementData_0_2: BigInt!
+  newRequirementData_1: BigInt!
+}
+
+type RankifyToken_Approval {
+  id: ID!
+  owner: String!
+  spender: String!
+  value: BigInt!
+}
+
+type RankifyToken_DelegateChanged {
+  id: ID!
+  delegator: String!
+  fromDelegate: String!
+  toDelegate: String!
+}
+
+type RankifyToken_DelegateVotesChanged {
+  id: ID!
+  delegate: String!
+  previousVotes: BigInt!
+  newVotes: BigInt!
+}
+
+type RankifyToken_EIP712DomainChanged {
+  id: ID!
+}
+
+type RankifyToken_OwnershipTransferred {
+  id: ID!
+  previousOwner: String!
+  newOwner: String!
+}
+
+type RankifyToken_Transfer {
+  id: ID!
+  from: String!
+  to: String!
+  value: BigInt!
+}
+

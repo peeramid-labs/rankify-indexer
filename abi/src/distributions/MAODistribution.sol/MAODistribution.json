@@ -1,0 +1,312 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "trustedForwarder",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "paymentToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "beneficiary",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "zkpVerifier",
+        "type": "address[]"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "rankTokenCodeId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "RankifyDIistributionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "accessManagerId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "governanceERC20BaseId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "distributionName",
+        "type": "string"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint64",
+            "name": "major",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "minor",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint128",
+            "name": "patch",
+            "type": "uint128"
+          }
+        ],
+        "internalType": "struct LibSemver.Version",
+        "name": "distributionVersion",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "minParticipantsInCircle",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "FailedDeployment",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "balance",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "needed",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidShortString",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "str",
+        "type": "string"
+      }
+    ],
+    "name": "StringTooLong",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "distributor",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "instances",
+        "type": "address[]"
+      }
+    ],
+    "name": "Distributed",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "contractURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "tokenName",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "tokenSymbol",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct MAODistribution.TokenArguments",
+            "name": "tokenSettings",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "principalCost",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint96",
+                "name": "principalTimeConstant",
+                "type": "uint96"
+              },
+              {
+                "internalType": "string",
+                "name": "rankTokenURI",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "rankTokenContractURI",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct MAODistribution.UserRankifySettings",
+            "name": "rankifySettings",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct MAODistribution.DistributorArguments",
+        "name": "args",
+        "type": "tuple"
+      }
+    ],
+    "name": "distributionSchema",
+    "outputs": [
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "tokenName",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "tokenSymbol",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct MAODistribution.TokenArguments",
+            "name": "tokenSettings",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "principalCost",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint96",
+                "name": "principalTimeConstant",
+                "type": "uint96"
+              },
+              {
+                "internalType": "string",
+                "name": "rankTokenURI",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "rankTokenContractURI",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct MAODistribution.UserRankifySettings",
+            "name": "rankifySettings",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct MAODistribution.DistributorArguments",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "sources",
+        "type": "address[]"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "instantiate",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "instances",
+        "type": "address[]"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "distributionName",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "distributionVersion",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

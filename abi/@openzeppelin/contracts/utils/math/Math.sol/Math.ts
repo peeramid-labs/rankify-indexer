@@ -1,0 +1,1 @@
+export const abi = [ { inputs: [], name: 'MathOverflowedMulDiv', type: 'error' } ] as const; export default abi;

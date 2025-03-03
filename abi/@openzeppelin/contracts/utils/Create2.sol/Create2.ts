@@ -1,0 +1,1 @@
+export const abi = [ { inputs: [], name: 'Create2EmptyBytecode', type: 'error' } ] as const; export default abi;

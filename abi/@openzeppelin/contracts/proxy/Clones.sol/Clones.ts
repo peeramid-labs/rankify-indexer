@@ -1,0 +1,1 @@
+export const abi = [ { inputs: [], name: 'CloneArgumentsTooLong', type: 'error' } ] as const; export default abi;

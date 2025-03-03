@@ -1,0 +1,1822 @@
+export const abi = [
+  {
+    inputs: [],
+    name: 'currentChainId',
+    outputs: [ { internalType: 'uint256', name: '', type: 'uint256' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'inspectEIP712Hashes',
+    outputs: [
+      {
+        internalType: 'bytes32',
+        name: '_CACHED_DOMAIN_SEPARATOR',
+        type: 'bytes32'
+      },
+      {
+        internalType: 'uint256',
+        name: '_CACHED_CHAIN_ID',
+        type: 'uint256'
+      },
+      {
+        internalType: 'address',
+        name: '_CACHED_THIS',
+        type: 'address'
+      },
+      {
+        internalType: 'bytes32',
+        name: '_HASHED_NAME',
+        type: 'bytes32'
+      },
+      {
+        internalType: 'bytes32',
+        name: '_HASHED_VERSION',
+        type: 'bytes32'
+      },
+      { internalType: 'bytes32', name: '_TYPE_HASH', type: 'bytes32' },
+      { internalType: 'string', name: '_NAME', type: 'string' },
+      { internalType: 'string', name: '_VERSION', type: 'string' }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[2]',
+        name: 'inputs',
+        type: 'bytes32[2]'
+      }
+    ],
+    name: 'poseidon',
+    outputs: [ { internalType: 'bytes32', name: '', type: 'bytes32' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[5]',
+        name: 'inputs',
+        type: 'bytes32[5]'
+      }
+    ],
+    name: 'poseidon',
+    outputs: [ { internalType: 'bytes32', name: '', type: 'bytes32' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes32[6]',
+        name: 'inputs',
+        type: 'bytes32[6]'
+      }
+    ],
+    name: 'poseidon',
+    outputs: [ { internalType: 'bytes32', name: '', type: 'bytes32' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'bytes32', name: 'ballotHash', type: 'bytes32' },
+      {
+        internalType: 'bytes32',
+        name: 'ballotHashFromVotes',
+        type: 'bytes32'
+      }
+    ],
+    name: 'ballotIntegrityCheckFailed',
+    type: 'error'
+  },
+  {
+    inputs: [
+      { internalType: 'string', name: 'parameter', type: 'string' },
+      { internalType: 'uint256', name: 'arg', type: 'uint256' },
+      { internalType: 'uint256', name: 'arg2', type: 'uint256' }
+    ],
+    name: 'quadraticVotingError',
+    type: 'error'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: false,
+        internalType: 'address[]',
+        name: 'players',
+        type: 'address[]'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256[]',
+        name: 'scores',
+        type: 'uint256[]'
+      }
+    ],
+    name: 'GameOver',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      }
+    ],
+    name: 'LastTurn',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      }
+    ],
+    name: 'OverTime',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'turn',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'string',
+        name: 'proposalHash',
+        type: 'string'
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'proposal',
+        type: 'string'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'score',
+        type: 'uint256'
+      }
+    ],
+    name: 'ProposalScore',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'turn',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'proposer',
+        type: 'address'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'commitment',
+        type: 'uint256'
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'encryptedProposal',
+        type: 'string'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes',
+        name: 'gmSignature',
+        type: 'bytes'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes',
+        name: 'proposerSignature',
+        type: 'bytes'
+      }
+    ],
+    name: 'ProposalSubmitted',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'turn',
+        type: 'uint256'
+      },
+      {
+        indexed: false,
+        internalType: 'address[]',
+        name: 'players',
+        type: 'address[]'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256[]',
+        name: 'scores',
+        type: 'uint256[]'
+      },
+      {
+        indexed: false,
+        internalType: 'string[]',
+        name: 'newProposals',
+        type: 'string[]'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256[]',
+        name: 'proposerIndices',
+        type: 'uint256[]'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256[][]',
+        name: 'votes',
+        type: 'uint256[][]'
+      }
+    ],
+    name: 'TurnEnded',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'turn',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'player',
+        type: 'address'
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'sealedBallotId',
+        type: 'string'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes',
+        name: 'gmSignature',
+        type: 'bytes'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes',
+        name: 'voterSignature',
+        type: 'bytes'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes32',
+        name: 'ballotHash',
+        type: 'bytes32'
+      }
+    ],
+    name: 'VoteSubmitted',
+    type: 'event'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        internalType: 'uint256[][]',
+        name: 'votes',
+        type: 'uint256[][]'
+      },
+      {
+        components: [
+          {
+            internalType: 'string[]',
+            name: 'proposals',
+            type: 'string[]'
+          },
+          { internalType: 'uint256[2]', name: 'a', type: 'uint256[2]' },
+          {
+            internalType: 'uint256[2][2]',
+            name: 'b',
+            type: 'uint256[2][2]'
+          },
+          { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
+          {
+            internalType: 'uint256',
+            name: 'permutationCommitment',
+            type: 'uint256'
+          }
+        ],
+        internalType: 'struct RankifyInstanceGameMastersFacet.BatchProposalReveal',
+        name: 'newProposals',
+        type: 'tuple'
+      },
+      {
+        internalType: 'uint256[]',
+        name: 'permutation',
+        type: 'uint256[]'
+      },
+      { internalType: 'uint256', name: 'shuffleSalt', type: 'uint256' }
+    ],
+    name: 'endTurn',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        components: [
+          { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+          {
+            internalType: 'string',
+            name: 'encryptedProposal',
+            type: 'string'
+          },
+          {
+            internalType: 'uint256',
+            name: 'commitment',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address',
+            name: 'proposer',
+            type: 'address'
+          },
+          { internalType: 'bytes', name: 'gmSignature', type: 'bytes' },
+          {
+            internalType: 'bytes',
+            name: 'proposerSignature',
+            type: 'bytes'
+          }
+        ],
+        internalType: 'struct RankifyInstanceGameMastersFacet.ProposalParams',
+        name: 'params',
+        type: 'tuple'
+      }
+    ],
+    name: 'submitProposal',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        internalType: 'string',
+        name: 'sealedBallotId',
+        type: 'string'
+      },
+      { internalType: 'address', name: 'voter', type: 'address' },
+      { internalType: 'bytes', name: 'gmSignature', type: 'bytes' },
+      { internalType: 'bytes', name: 'voterSignature', type: 'bytes' },
+      { internalType: 'bytes32', name: 'ballotHash', type: 'bytes32' }
+    ],
+    name: 'submitVote',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  { inputs: [], name: 'ECDSAInvalidSignature', type: 'error' },
+  {
+    inputs: [ { internalType: 'uint256', name: 'length', type: 'uint256' } ],
+    name: 'ECDSAInvalidSignatureLength',
+    type: 'error'
+  },
+  {
+    inputs: [ { internalType: 'bytes32', name: 's', type: 'bytes32' } ],
+    name: 'ECDSAInvalidSignatureS',
+    type: 'error'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'a', type: 'uint256' },
+      { internalType: 'uint256', name: 'b', type: 'uint256' }
+    ],
+    name: 'NoDivisionReminderAllowed',
+    type: 'error'
+  },
+  { inputs: [], name: 'RankNotSpecified', type: 'error' },
+  {
+    inputs: [ { internalType: 'string', name: 'message', type: 'string' } ],
+    name: 'invalidConfiguration',
+    type: 'error'
+  },
+  {
+    inputs: [
+      { internalType: 'bytes32', name: 'digest', type: 'bytes32' },
+      { internalType: 'string', name: 'message', type: 'string' }
+    ],
+    name: 'invalidECDSARecoverSigner',
+    type: 'error'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'nTurns', type: 'uint256' } ],
+    name: 'invalidTurnCount',
+    type: 'error'
+  },
+  { inputs: [], name: 'zeroValue', type: 'error' },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      }
+    ],
+    name: 'GameClosed',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      }
+    ],
+    name: 'GameStarted',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'participant',
+        type: 'address'
+      },
+      {
+        indexed: false,
+        internalType: 'bytes32',
+        name: 'gmCommitment',
+        type: 'bytes32'
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'voterPubKey',
+        type: 'string'
+      }
+    ],
+    name: 'PlayerJoined',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'player',
+        type: 'address'
+      }
+    ],
+    name: 'PlayerLeft',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'player',
+        type: 'address'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'rankId',
+        type: 'uint256'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256'
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: '_toMint',
+        type: 'uint256'
+      }
+    ],
+    name: 'RankTokenExited',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      }
+    ],
+    name: 'RegistrationOpen',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'gm',
+        type: 'address'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'creator',
+        type: 'address'
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'rank',
+        type: 'uint256'
+      }
+    ],
+    name: 'gameCreated',
+    type: 'event'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'canEndTurn',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'canStartGame',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'cancelGame',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'gameRank',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'minPlayerCnt',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'maxPlayerCnt',
+            type: 'uint256'
+          },
+          { internalType: 'uint96', name: 'nTurns', type: 'uint96' },
+          {
+            internalType: 'uint256',
+            name: 'voteCredits',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address',
+            name: 'gameMaster',
+            type: 'address'
+          },
+          {
+            internalType: 'uint128',
+            name: 'minGameTime',
+            type: 'uint128'
+          },
+          {
+            internalType: 'uint128',
+            name: 'timePerTurn',
+            type: 'uint128'
+          },
+          {
+            internalType: 'uint128',
+            name: 'timeToJoin',
+            type: 'uint128'
+          },
+          { internalType: 'string', name: 'metadata', type: 'string' }
+        ],
+        internalType: 'struct IRankifyInstance.NewGameParamsInput',
+        name: 'params',
+        type: 'tuple'
+      }
+    ],
+    name: 'createGame',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint128', name: 'minGameTime', type: 'uint128' }
+    ],
+    name: 'estimateGamePrice',
+    outputs: [ { internalType: 'uint256', name: '', type: 'uint256' } ],
+    stateMutability: 'pure',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'rankId', type: 'uint256' },
+      { internalType: 'uint256', name: 'amount', type: 'uint256' }
+    ],
+    name: 'exitRankToken',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'gameCreator',
+    outputs: [ { internalType: 'address', name: '', type: 'address' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'gameWinner',
+    outputs: [ { internalType: 'address', name: '', type: 'address' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'getContractState',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'numGames',
+            type: 'uint256'
+          },
+          {
+            internalType: 'bool',
+            name: 'contractInitialized',
+            type: 'bool'
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'principalCost',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint96',
+                name: 'principalTimeConstant',
+                type: 'uint96'
+              },
+              {
+                internalType: 'address',
+                name: 'gamePaymentToken',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'rankTokenAddress',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'beneficiary',
+                type: 'address'
+              },
+              {
+                internalType: 'uint256',
+                name: 'minimumParticipantsInCircle',
+                type: 'uint256'
+              },
+              {
+                internalType: 'address',
+                name: 'derivedToken',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'proposalIntegrityVerifier',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'poseidon5',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'poseidon6',
+                type: 'address'
+              },
+              {
+                internalType: 'address',
+                name: 'poseidon2',
+                type: 'address'
+              }
+            ],
+            internalType: 'struct LibRankify.CommonParams',
+            name: 'commonParams',
+            type: 'tuple'
+          }
+        ],
+        internalType: 'struct LibRankify.InstanceState',
+        name: '',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'pure',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getGM',
+    outputs: [ { internalType: 'address', name: '', type: 'address' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getGameRank',
+    outputs: [ { internalType: 'uint256', name: '', type: 'uint256' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getPlayerVotedArray',
+    outputs: [ { internalType: 'bool[]', name: '', type: 'bool[]' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getPlayers',
+    outputs: [ { internalType: 'address[]', name: '', type: 'address[]' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'address', name: 'player', type: 'address' } ],
+    name: 'getPlayersGame',
+    outputs: [ { internalType: 'uint256', name: '', type: 'uint256' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getPlayersMoved',
+    outputs: [
+      { internalType: 'bool[]', name: '', type: 'bool[]' },
+      { internalType: 'uint256', name: '', type: 'uint256' }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getScores',
+    outputs: [
+      { internalType: 'address[]', name: '', type: 'address[]' },
+      { internalType: 'uint256[]', name: '', type: 'uint256[]' }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getTurn',
+    outputs: [ { internalType: 'uint256', name: '', type: 'uint256' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      { internalType: 'address', name: 'player', type: 'address' }
+    ],
+    name: 'isActive',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'isGameOver',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'isLastTurn',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'isOvertime',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      { internalType: 'address', name: 'player', type: 'address' }
+    ],
+    name: 'isPlayerTurnComplete',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'isRegistrationOpen',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        internalType: 'bytes',
+        name: 'gameMasterSignature',
+        type: 'bytes'
+      },
+      {
+        internalType: 'bytes32',
+        name: 'gmCommitment',
+        type: 'bytes32'
+      },
+      { internalType: 'uint256', name: 'deadline', type: 'uint256' },
+      { internalType: 'string', name: 'voterPubKey', type: 'string' }
+    ],
+    name: 'joinGame',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'leaveGame',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'address', name: 'operator', type: 'address' },
+      { internalType: 'address', name: '', type: 'address' },
+      { internalType: 'uint256[]', name: '', type: 'uint256[]' },
+      { internalType: 'uint256[]', name: '', type: 'uint256[]' },
+      { internalType: 'bytes', name: '', type: 'bytes' }
+    ],
+    name: 'onERC1155BatchReceived',
+    outputs: [ { internalType: 'bytes4', name: '', type: 'bytes4' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'address', name: 'operator', type: 'address' },
+      { internalType: 'address', name: '', type: 'address' },
+      { internalType: 'uint256', name: '', type: 'uint256' },
+      { internalType: 'uint256', name: '', type: 'uint256' },
+      { internalType: 'bytes', name: '', type: 'bytes' }
+    ],
+    name: 'onERC1155Received',
+    outputs: [ { internalType: 'bytes4', name: '', type: 'bytes4' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'address', name: 'operator', type: 'address' },
+      { internalType: 'address', name: '', type: 'address' },
+      { internalType: 'uint256', name: '', type: 'uint256' },
+      { internalType: 'bytes', name: '', type: 'bytes' }
+    ],
+    name: 'onERC721Received',
+    outputs: [ { internalType: 'bytes4', name: '', type: 'bytes4' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'openRegistration',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        internalType: 'uint256',
+        name: 'permutationCommitment',
+        type: 'uint256'
+      }
+    ],
+    name: 'startGame',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'gameId',
+        type: 'uint256'
+      },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'have',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'lock',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'burn',
+                type: 'uint256'
+              },
+              { internalType: 'uint256', name: 'pay', type: 'uint256' },
+              { internalType: 'uint256', name: 'bet', type: 'uint256' }
+            ],
+            internalType: 'struct LibCoinVending.NumericCondition',
+            name: 'ethValues',
+            type: 'tuple'
+          },
+          {
+            components: [
+              {
+                internalType: 'address',
+                name: 'contractAddress',
+                type: 'address'
+              },
+              {
+                internalType: 'uint256',
+                name: 'contractId',
+                type: 'uint256'
+              },
+              {
+                internalType: 'enum LibCoinVending.ContractTypes',
+                name: 'contractType',
+                type: 'uint8'
+              },
+              {
+                components: [
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'have',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'lock',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'burn',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'pay',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'bet',
+                    type: 'tuple'
+                  }
+                ],
+                internalType: 'struct LibCoinVending.ContractCondition',
+                name: 'contractRequirement',
+                type: 'tuple'
+              }
+            ],
+            internalType: 'struct LibCoinVending.configSmartRequirement[]',
+            name: 'contracts',
+            type: 'tuple[]'
+          }
+        ],
+        indexed: false,
+        internalType: 'struct LibCoinVending.ConfigPosition',
+        name: 'config',
+        type: 'tuple'
+      }
+    ],
+    name: 'RequirementsConfigured',
+    type: 'event'
+  },
+  {
+    inputs: [],
+    name: 'getCommonParams',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'principalCost',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint96',
+            name: 'principalTimeConstant',
+            type: 'uint96'
+          },
+          {
+            internalType: 'address',
+            name: 'gamePaymentToken',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'rankTokenAddress',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'beneficiary',
+            type: 'address'
+          },
+          {
+            internalType: 'uint256',
+            name: 'minimumParticipantsInCircle',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address',
+            name: 'derivedToken',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'proposalIntegrityVerifier',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'poseidon5',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'poseidon6',
+            type: 'address'
+          },
+          {
+            internalType: 'address',
+            name: 'poseidon2',
+            type: 'address'
+          }
+        ],
+        internalType: 'struct LibRankify.CommonParams',
+        name: '',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getGameState',
+    outputs: [
+      {
+        components: [
+          { internalType: 'uint256', name: 'rank', type: 'uint256' },
+          {
+            internalType: 'uint256',
+            name: 'minGameTime',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address',
+            name: 'createdBy',
+            type: 'address'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numOngoingProposals',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numPrevProposals',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numCommitments',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numVotesThisTurn',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numVotesPrevTurn',
+            type: 'uint256'
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'voteCredits',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'maxQuadraticPoints',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'minQuadraticPositions',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibQuadraticVoting.qVotingStruct',
+            name: 'voting',
+            type: 'tuple'
+          },
+          {
+            internalType: 'uint256',
+            name: 'currentTurn',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'turnStartedAt',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'registrationOpenAt',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'startedAt',
+            type: 'uint256'
+          },
+          { internalType: 'bool', name: 'hasStarted', type: 'bool' },
+          { internalType: 'bool', name: 'hasEnded', type: 'bool' },
+          {
+            internalType: 'uint256',
+            name: 'numPlayersMadeMove',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'numActivePlayers',
+            type: 'uint256'
+          },
+          { internalType: 'bool', name: 'isOvertime', type: 'bool' },
+          {
+            internalType: 'uint256',
+            name: 'timePerTurn',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'maxPlayerCnt',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'minPlayerCnt',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'timeToJoin',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'maxTurns',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'voteCredits',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address',
+            name: 'gameMaster',
+            type: 'address'
+          },
+          { internalType: 'string', name: 'metadata', type: 'string' }
+        ],
+        internalType: 'struct IRankifyInstance.GameStateOutput',
+        name: 'state',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'uint256', name: 'gameId', type: 'uint256' } ],
+    name: 'getJoinRequirements',
+    outputs: [
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'have',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'lock',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'burn',
+                type: 'uint256'
+              },
+              { internalType: 'uint256', name: 'pay', type: 'uint256' },
+              { internalType: 'uint256', name: 'bet', type: 'uint256' }
+            ],
+            internalType: 'struct LibCoinVending.NumericCondition',
+            name: 'ethValues',
+            type: 'tuple'
+          },
+          {
+            internalType: 'uint256',
+            name: 'timesRefunded',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'timesReleased',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'timesFunded',
+            type: 'uint256'
+          },
+          {
+            internalType: 'address[]',
+            name: 'contractAddresses',
+            type: 'address[]'
+          },
+          {
+            internalType: 'uint256[]',
+            name: 'contractIds',
+            type: 'uint256[]'
+          },
+          {
+            internalType: 'enum LibCoinVending.ContractTypes[]',
+            name: 'contractTypes',
+            type: 'uint8[]'
+          },
+          { internalType: 'bool', name: '_isConfigured', type: 'bool' }
+        ],
+        internalType: 'struct LibCoinVending.ConditionReturn',
+        name: '',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        internalType: 'address',
+        name: 'contractAddress',
+        type: 'address'
+      },
+      { internalType: 'uint256', name: 'contractId', type: 'uint256' },
+      {
+        internalType: 'enum LibCoinVending.ContractTypes',
+        name: 'contractType',
+        type: 'uint8'
+      }
+    ],
+    name: 'getJoinRequirementsByToken',
+    outputs: [
+      {
+        components: [
+          {
+            components: [
+              { internalType: 'bytes', name: 'data', type: 'bytes' },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibCoinVending.TransactionProperties',
+            name: 'have',
+            type: 'tuple'
+          },
+          {
+            components: [
+              { internalType: 'bytes', name: 'data', type: 'bytes' },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibCoinVending.TransactionProperties',
+            name: 'lock',
+            type: 'tuple'
+          },
+          {
+            components: [
+              { internalType: 'bytes', name: 'data', type: 'bytes' },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibCoinVending.TransactionProperties',
+            name: 'burn',
+            type: 'tuple'
+          },
+          {
+            components: [
+              { internalType: 'bytes', name: 'data', type: 'bytes' },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibCoinVending.TransactionProperties',
+            name: 'pay',
+            type: 'tuple'
+          },
+          {
+            components: [
+              { internalType: 'bytes', name: 'data', type: 'bytes' },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct LibCoinVending.TransactionProperties',
+            name: 'bet',
+            type: 'tuple'
+          }
+        ],
+        internalType: 'struct LibCoinVending.ContractCondition',
+        name: '',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'have',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'lock',
+                type: 'uint256'
+              },
+              {
+                internalType: 'uint256',
+                name: 'burn',
+                type: 'uint256'
+              },
+              { internalType: 'uint256', name: 'pay', type: 'uint256' },
+              { internalType: 'uint256', name: 'bet', type: 'uint256' }
+            ],
+            internalType: 'struct LibCoinVending.NumericCondition',
+            name: 'ethValues',
+            type: 'tuple'
+          },
+          {
+            components: [
+              {
+                internalType: 'address',
+                name: 'contractAddress',
+                type: 'address'
+              },
+              {
+                internalType: 'uint256',
+                name: 'contractId',
+                type: 'uint256'
+              },
+              {
+                internalType: 'enum LibCoinVending.ContractTypes',
+                name: 'contractType',
+                type: 'uint8'
+              },
+              {
+                components: [
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'have',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'lock',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'burn',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'pay',
+                    type: 'tuple'
+                  },
+                  {
+                    components: [
+                      {
+                        internalType: 'bytes',
+                        name: 'data',
+                        type: 'bytes'
+                      },
+                      {
+                        internalType: 'uint256',
+                        name: 'amount',
+                        type: 'uint256'
+                      }
+                    ],
+                    internalType: 'struct LibCoinVending.TransactionProperties',
+                    name: 'bet',
+                    type: 'tuple'
+                  }
+                ],
+                internalType: 'struct LibCoinVending.ContractCondition',
+                name: 'contractRequirement',
+                type: 'tuple'
+              }
+            ],
+            internalType: 'struct LibCoinVending.configSmartRequirement[]',
+            name: 'contracts',
+            type: 'tuple[]'
+          }
+        ],
+        internalType: 'struct LibCoinVending.ConfigPosition',
+        name: 'config',
+        type: 'tuple'
+      }
+    ],
+    name: 'setJoinRequirements',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'bytes4',
+        name: '_functionSelector',
+        type: 'bytes4'
+      }
+    ],
+    name: 'facetAddress',
+    outputs: [
+      {
+        internalType: 'address',
+        name: 'facetAddress_',
+        type: 'address'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'facetAddresses',
+    outputs: [
+      {
+        internalType: 'address[]',
+        name: 'facetAddresses_',
+        type: 'address[]'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'address', name: '_facet', type: 'address' } ],
+    name: 'facetFunctionSelectors',
+    outputs: [
+      {
+        internalType: 'bytes4[]',
+        name: 'facetFunctionSelectors_',
+        type: 'bytes4[]'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'facets',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'address',
+            name: 'facetAddress',
+            type: 'address'
+          },
+          {
+            internalType: 'bytes4[]',
+            name: 'functionSelectors',
+            type: 'bytes4[]'
+          }
+        ],
+        internalType: 'struct IDiamondLoupe.Facet[]',
+        name: 'facets_',
+        type: 'tuple[]'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'bytes4', name: 'interfaceId', type: 'bytes4' } ],
+    name: 'supportsInterface',
+    outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address'
+      }
+    ],
+    name: 'OwnershipTransferred',
+    type: 'event'
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [ { internalType: 'address', name: '', type: 'address' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'address', name: '_newOwner', type: 'address' } ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  }
+] as const; export default abi;
