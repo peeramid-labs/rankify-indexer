@@ -1,7 +1,7 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, IssuanceCurve, IssuanceCurve_Buy, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
+import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, IssuanceCurve, IssuanceCurve_Buy, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_TurnEnded, RankifyInstance_TurnEnded_event, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -460,4 +460,19 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
   };
 
   context.RankifyToken_Transfer.set(entity);
+});
+
+RankifyInstance.TurnEnded.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_TurnEnded = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    turn: event.params.turn,
+    players: event.params.players,
+    scores: event.params.scores,
+    newProposals: event.params.newProposals,
+    proposerIndices: event.params.proposerIndices,
+    votes: event.params.votes,
+  };
+
+  context.RankifyInstance_TurnEnded.set(entity);
 });

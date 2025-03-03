@@ -284,3 +284,13 @@ type RankifyToken_Transfer {
   value: BigInt!
 }
 
+type RankifyInstance_TurnEnded {
+  id: ID!
+  gameId: BigInt!
+  turn: BigInt!
+  players: [String!]!
+  scores: [BigInt!]!
+  newProposals: [String!]!
+  proposerIndices: [BigInt!]!
+  votes: [[BigInt!]!]!
+}
