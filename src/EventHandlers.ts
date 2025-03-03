@@ -1,29 +1,7 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import {
-  DAODistributor,
-  DAODistributor_Debug,
-  DAODistributor_DefaultAdminDelayChangeCanceled,
-  DAODistributor_DefaultAdminDelayChangeScheduled,
-  DAODistributor_DefaultAdminTransferCanceled,
-  DAODistributor_DefaultAdminTransferScheduled,
-  DAODistributor_DistributionAdded,
-  DAODistributor_DistributionRemoved,
-  DAODistributor_Instantiated,
-  DAODistributor_InstantiationCostChanged,
-  DAODistributor_RoleAdminChanged,
-  DAODistributor_RoleGranted,
-  DAODistributor_RoleRevoked,
-  DAODistributor_VersionChanged,
-  RankifyToken,
-  RankifyToken_Approval,
-  RankifyToken_DelegateChanged,
-  RankifyToken_DelegateVotesChanged,
-  RankifyToken_EIP712DomainChanged,
-  RankifyToken_OwnershipTransferred,
-  RankifyToken_Transfer,
-} from "generated";
+import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, IssuanceCurve, IssuanceCurve_Buy, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -104,6 +82,11 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
   context.DAODistributor_Instantiated.set(entity);
 });
 
+DAODistributor.Instantiated.contractRegister(({ event, context }) => {
+  context.addRankifyInstance(event.params.instances[11]);
+  context.addRankToken(event.params.instances[11]);
+});
+
 DAODistributor.InstantiationCostChanged.handler(async ({ event, context }) => {
   const entity: DAODistributor_InstantiationCostChanged = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
@@ -151,39 +134,270 @@ DAODistributor.VersionChanged.handler(async ({ event, context }) => {
   const entity: DAODistributor_VersionChanged = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     distributionId: event.params.distributionId,
-    newRequirement_0_0: event.params.newRequirement
-        [0]
-        [0]
-    ,
-    newRequirement_0_1: event.params.newRequirement
-        [0]
-        [1]
-    ,
-    newRequirement_0_2: event.params.newRequirement
-        [0]
-        [2]
-    ,
-    newRequirement_1: event.params.newRequirement
-        [1]
-    ,
-    newRequirementData_0_0: event.params.newRequirementData
-        [0]
-        [0]
-    ,
-    newRequirementData_0_1: event.params.newRequirementData
-        [0]
-        [1]
-    ,
-    newRequirementData_0_2: event.params.newRequirementData
-        [0]
-        [2]
-    ,
-    newRequirementData_1: event.params.newRequirementData
-        [1]
-    ,
+    newRequirement_0_0: event.params.newRequirement[0][0],
+    newRequirement_0_1: event.params.newRequirement[0][1],
+    newRequirement_0_2: event.params.newRequirement[0][2],
+    newRequirement_1: event.params.newRequirement[1],
+    newRequirementData_0_0: event.params.newRequirementData[0][0],
+    newRequirementData_0_1: event.params.newRequirementData[0][1],
+    newRequirementData_0_2: event.params.newRequirementData[0][2],
+    newRequirementData_1: event.params.newRequirementData[1],
   };
 
   context.DAODistributor_VersionChanged.set(entity);
+});
+
+IssuanceCurve.Buy.handler(async ({ event, context }) => {
+  const entity: IssuanceCurve_Buy = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    buyer: event.params.buyer,
+    amount: event.params.amount,
+    cost: event.params.cost,
+  };
+
+  context.IssuanceCurve_Buy.set(entity);
+});
+
+RankToken.ApprovalForAll.handler(async ({ event, context }) => {
+  const entity: RankToken_ApprovalForAll = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    account: event.params.account,
+    operator: event.params.operator,
+    approved: event.params.approved,
+  };
+
+  context.RankToken_ApprovalForAll.set(entity);
+});
+
+RankToken.Initialized.handler(async ({ event, context }) => {
+  const entity: RankToken_Initialized = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    version: event.params.version,
+  };
+
+  context.RankToken_Initialized.set(entity);
+});
+
+RankToken.RankingInstanceUpdated.handler(async ({ event, context }) => {
+  const entity: RankToken_RankingInstanceUpdated = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    newRankingInstance: event.params.newRankingInstance,
+  };
+
+  context.RankToken_RankingInstanceUpdated.set(entity);
+});
+
+RankToken.TokensLocked.handler(async ({ event, context }) => {
+  const entity: RankToken_TokensLocked = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    account: event.params.account,
+    event_id: event.params.id,
+    value: event.params.value,
+  };
+
+  context.RankToken_TokensLocked.set(entity);
+});
+
+RankToken.TokensUnlocked.handler(async ({ event, context }) => {
+  const entity: RankToken_TokensUnlocked = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    account: event.params.account,
+    event_id: event.params.id,
+    value: event.params.value,
+  };
+
+  context.RankToken_TokensUnlocked.set(entity);
+});
+
+RankToken.TransferBatch.handler(async ({ event, context }) => {
+  const entity: RankToken_TransferBatch = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    operator: event.params.operator,
+    from: event.params.from,
+    to: event.params.to,
+    ids: event.params.ids,
+    values: event.params.values,
+  };
+
+  context.RankToken_TransferBatch.set(entity);
+});
+
+RankToken.TransferSingle.handler(async ({ event, context }) => {
+  const entity: RankToken_TransferSingle = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    operator: event.params.operator,
+    from: event.params.from,
+    to: event.params.to,
+    event_id: event.params.id,
+    value: event.params.value,
+  };
+
+  context.RankToken_TransferSingle.set(entity);
+});
+
+RankToken.URI.handler(async ({ event, context }) => {
+  const entity: RankToken_URI = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    value: event.params.value,
+    event_id: event.params.id,
+  };
+
+  context.RankToken_URI.set(entity);
+});
+
+RankifyInstance.GameClosed.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_GameClosed = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+  };
+
+  context.RankifyInstance_GameClosed.set(entity);
+});
+
+RankifyInstance.GameOver.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_GameOver = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    players: event.params.players,
+    scores: event.params.scores,
+  };
+
+  context.RankifyInstance_GameOver.set(entity);
+});
+
+RankifyInstance.GameStarted.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_GameStarted = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+  };
+
+  context.RankifyInstance_GameStarted.set(entity);
+});
+
+RankifyInstance.LastTurn.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_LastTurn = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+  };
+
+  context.RankifyInstance_LastTurn.set(entity);
+});
+
+RankifyInstance.OverTime.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_OverTime = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+  };
+
+  context.RankifyInstance_OverTime.set(entity);
+});
+
+RankifyInstance.OwnershipTransferred.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_OwnershipTransferred = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    previousOwner: event.params.previousOwner,
+    newOwner: event.params.newOwner,
+  };
+
+  context.RankifyInstance_OwnershipTransferred.set(entity);
+});
+
+RankifyInstance.PlayerJoined.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_PlayerJoined = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    participant: event.params.participant,
+    gmCommitment: event.params.gmCommitment,
+    voterPubKey: event.params.voterPubKey,
+  };
+
+  context.RankifyInstance_PlayerJoined.set(entity);
+});
+
+RankifyInstance.PlayerLeft.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_PlayerLeft = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    player: event.params.player,
+  };
+
+  context.RankifyInstance_PlayerLeft.set(entity);
+});
+
+RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_ProposalScore = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    turn: event.params.turn,
+    proposalHash: event.params.proposalHash,
+    proposal: event.params.proposal,
+    score: event.params.score,
+  };
+
+  context.RankifyInstance_ProposalScore.set(entity);
+});
+
+RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_ProposalSubmitted = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    turn: event.params.turn,
+    proposer: event.params.proposer,
+    commitment: event.params.commitment,
+    encryptedProposal: event.params.encryptedProposal,
+    gmSignature: event.params.gmSignature,
+    proposerSignature: event.params.proposerSignature,
+  };
+
+  context.RankifyInstance_ProposalSubmitted.set(entity);
+});
+
+RankifyInstance.RankTokenExited.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_RankTokenExited = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    player: event.params.player,
+    rankId: event.params.rankId,
+    amount: event.params.amount,
+    _toMint: event.params._toMint,
+  };
+
+  context.RankifyInstance_RankTokenExited.set(entity);
+});
+
+RankifyInstance.RegistrationOpen.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_RegistrationOpen = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+  };
+
+  context.RankifyInstance_RegistrationOpen.set(entity);
+});
+
+RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_VoteSubmitted = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    turn: event.params.turn,
+    player: event.params.player,
+    sealedBallotId: event.params.sealedBallotId,
+    gmSignature: event.params.gmSignature,
+    voterSignature: event.params.voterSignature,
+    ballotHash: event.params.ballotHash,
+  };
+
+  context.RankifyInstance_VoteSubmitted.set(entity);
+});
+
+RankifyInstance.GameCreated.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_gameCreated = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    gm: event.params.gm,
+    creator: event.params.creator,
+    rank: event.params.rank,
+  };
+
+  context.RankifyInstance_gameCreated.set(entity);
 });
 
 RankifyToken.Approval.handler(async ({ event, context }) => {
