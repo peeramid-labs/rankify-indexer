@@ -47,7 +47,7 @@ networks:
     - event: URI(string value, uint256 indexed id)
   - name: DAODistributor
     address:
-    - 0xE195BA7978Dbd70844D8396b9B1D6d70ba0D17dD
+    - 0x54c7cdAEDa35c3990892e3FC1F00163fb7020287
     handler: src/EventHandlers.ts
     events:
     - event: Debug(bytes32 distributorsId, bytes args)
