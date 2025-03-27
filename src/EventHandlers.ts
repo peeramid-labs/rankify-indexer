@@ -83,7 +83,7 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
 });
 
 DAODistributor.Instantiated.contractRegister(({ event, context }) => {
-  context.addRankifyInstance(event.params.instances[11]);
+  context.addRankifyInstance(event.params.instances[2]);
   context.addRankToken(event.params.instances[11]);
 });
 
