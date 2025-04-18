@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: envio-indexer
+field_selection:
+  transaction_fields:
+    - transactionIndex
 networks:
 - id: 421614
   start_block: 0

@@ -43,3 +43,21 @@ You can also set the port using the `ENVIO_PORT` environment variable:
 ```bash
 ENVIO_PORT=8300 pnpm dev:local
 ```
+
+## Important: Stopping the Envio Environment
+
+⚠️ **WARNING** ⚠️
+
+The Envio development environment continues running in Docker containers after you exit the script. To properly stop the environment, you must run:
+
+```bash
+pnpm envio stop
+```
+
+Failure to stop the environment properly can lead to:
+- Port conflicts when restarting the indexer
+- Database inconsistencies
+- Excessive resource consumption
+- Unexpected behavior in subsequent sessions
+
+Always make sure to run the stop command when you're done with your development session.

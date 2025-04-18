@@ -1,7 +1,7 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, IssuanceCurve, IssuanceCurve_Buy, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_TurnEnded, RankifyInstance_TurnEnded_event, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
+import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_TurnEnded, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -173,19 +173,6 @@ DAODistributor.VersionChanged.handler(async ({ event, context }) => {
   context.DAODistributor_VersionChanged.set(entity);
 });
 
-IssuanceCurve.Buy.handler(async ({ event, context }) => {
-  const entity: IssuanceCurve_Buy = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    buyer: event.params.buyer,
-    amount: event.params.amount,
-    cost: event.params.cost,
-    blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-  };
-
-  context.IssuanceCurve_Buy.set(entity);
-});
-
 RankToken.ApprovalForAll.handler(async ({ event, context }) => {
   const entity: RankToken_ApprovalForAll = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
@@ -295,6 +282,7 @@ RankifyInstance.GameClosed.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_GameClosed.set(entity);
@@ -308,6 +296,7 @@ RankifyInstance.GameOver.handler(async ({ event, context }) => {
     scores: event.params.scores,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_GameOver.set(entity);
@@ -319,6 +308,7 @@ RankifyInstance.GameStarted.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_GameStarted.set(entity);
@@ -330,6 +320,7 @@ RankifyInstance.LastTurn.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_LastTurn.set(entity);
@@ -341,6 +332,7 @@ RankifyInstance.OverTime.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_OverTime.set(entity);
@@ -353,6 +345,7 @@ RankifyInstance.OwnershipTransferred.handler(async ({ event, context }) => {
     newOwner: event.params.newOwner,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_OwnershipTransferred.set(entity);
@@ -367,6 +360,9 @@ RankifyInstance.PlayerJoined.handler(async ({ event, context }) => {
     voterPubKey: event.params.voterPubKey,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+    transactionIndex: event.transaction.transactionIndex,
+    logIndex: event.logIndex,
   };
 
   context.RankifyInstance_PlayerJoined.set(entity);
@@ -379,6 +375,7 @@ RankifyInstance.PlayerLeft.handler(async ({ event, context }) => {
     player: event.params.player,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_PlayerLeft.set(entity);
@@ -394,6 +391,7 @@ RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
     score: event.params.score,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_ProposalScore.set(entity);
@@ -411,6 +409,7 @@ RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
     proposerSignature: event.params.proposerSignature,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_ProposalSubmitted.set(entity);
@@ -425,6 +424,7 @@ RankifyInstance.RankTokenExited.handler(async ({ event, context }) => {
     _toMint: event.params._toMint,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_RankTokenExited.set(entity);
@@ -436,6 +436,7 @@ RankifyInstance.RegistrationOpen.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_RegistrationOpen.set(entity);
@@ -453,6 +454,7 @@ RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
     ballotHash: event.params.ballotHash,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_VoteSubmitted.set(entity);
@@ -467,6 +469,7 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
     rank: event.params.rank,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_gameCreated.set(entity);
@@ -558,6 +561,7 @@ RankifyInstance.TurnEnded.handler(async ({ event, context }) => {
     votes: event.params.votes,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_TurnEnded.set(entity);
