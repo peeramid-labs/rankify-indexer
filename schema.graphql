@@ -2,26 +2,36 @@ type DAODistributor_Debug {
   id: ID!
   distributorsId: String!
   args: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DefaultAdminDelayChangeCanceled {
   id: ID!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DefaultAdminDelayChangeScheduled {
   id: ID!
   newDelay: BigInt!
   effectSchedule: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DefaultAdminTransferCanceled {
   id: ID!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DefaultAdminTransferScheduled {
   id: ID!
   newAdmin: String!
   acceptSchedule: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DistributionAdded {
@@ -29,11 +39,15 @@ type DAODistributor_DistributionAdded {
   event_id: String!
   distribution: String!
   initializer: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_DistributionRemoved {
   id: ID!
   event_id: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_Instantiated {
@@ -43,12 +57,16 @@ type DAODistributor_Instantiated {
   version: BigInt!
   instances: [String!]!
   args: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_InstantiationCostChanged {
   id: ID!
   event_id: String!
   cost: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_RoleAdminChanged {
@@ -56,6 +74,8 @@ type DAODistributor_RoleAdminChanged {
   role: String!
   previousAdminRole: String!
   newAdminRole: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_RoleGranted {
@@ -63,6 +83,8 @@ type DAODistributor_RoleGranted {
   role: String!
   account: String!
   sender: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_RoleRevoked {
@@ -70,6 +92,8 @@ type DAODistributor_RoleRevoked {
   role: String!
   account: String!
   sender: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type DAODistributor_VersionChanged {
@@ -83,6 +107,8 @@ type DAODistributor_VersionChanged {
   newRequirementData_0_1: BigInt!
   newRequirementData_0_2: BigInt!
   newRequirementData_1: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type IssuanceCurve_Buy {
@@ -90,6 +116,8 @@ type IssuanceCurve_Buy {
   buyer: String!
   amount: BigInt!
   cost: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_ApprovalForAll {
@@ -97,16 +125,22 @@ type RankToken_ApprovalForAll {
   account: String!
   operator: String!
   approved: Boolean!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_Initialized {
   id: ID!
   version: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_RankingInstanceUpdated {
   id: ID!
   newRankingInstance: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_TokensLocked {
@@ -114,6 +148,8 @@ type RankToken_TokensLocked {
   account: String!
   event_id: BigInt!
   value: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_TokensUnlocked {
@@ -121,6 +157,8 @@ type RankToken_TokensUnlocked {
   account: String!
   event_id: BigInt!
   value: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_TransferBatch {
@@ -130,6 +168,8 @@ type RankToken_TransferBatch {
   to: String!
   ids: [BigInt!]!
   values: [BigInt!]!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_TransferSingle {
@@ -139,17 +179,23 @@ type RankToken_TransferSingle {
   to: String!
   event_id: BigInt!
   value: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankToken_URI {
   id: ID!
   value: String!
   event_id: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_GameClosed {
   id: ID!
   gameId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_GameOver {
@@ -157,27 +203,37 @@ type RankifyInstance_GameOver {
   gameId: BigInt!
   players: [String!]!
   scores: [BigInt!]!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_GameStarted {
   id: ID!
   gameId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_LastTurn {
   id: ID!
   gameId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_OverTime {
   id: ID!
   gameId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_OwnershipTransferred {
   id: ID!
   previousOwner: String!
   newOwner: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_PlayerJoined {
@@ -186,12 +242,16 @@ type RankifyInstance_PlayerJoined {
   participant: String!
   gmCommitment: String!
   voterPubKey: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_PlayerLeft {
   id: ID!
   gameId: BigInt!
   player: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_ProposalScore {
@@ -201,6 +261,8 @@ type RankifyInstance_ProposalScore {
   proposalHash: String!
   proposal: String!
   score: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_ProposalSubmitted {
@@ -212,6 +274,8 @@ type RankifyInstance_ProposalSubmitted {
   encryptedProposal: String!
   gmSignature: String!
   proposerSignature: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_RankTokenExited {
@@ -220,11 +284,15 @@ type RankifyInstance_RankTokenExited {
   rankId: BigInt!
   amount: BigInt!
   _toMint: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_RegistrationOpen {
   id: ID!
   gameId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_VoteSubmitted {
@@ -236,6 +304,8 @@ type RankifyInstance_VoteSubmitted {
   gmSignature: String!
   voterSignature: String!
   ballotHash: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_gameCreated {
@@ -244,6 +314,8 @@ type RankifyInstance_gameCreated {
   gm: String!
   creator: String!
   rank: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_Approval {
@@ -251,6 +323,8 @@ type RankifyToken_Approval {
   owner: String!
   spender: String!
   value: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_DelegateChanged {
@@ -258,6 +332,8 @@ type RankifyToken_DelegateChanged {
   delegator: String!
   fromDelegate: String!
   toDelegate: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_DelegateVotesChanged {
@@ -265,16 +341,22 @@ type RankifyToken_DelegateVotesChanged {
   delegate: String!
   previousVotes: BigInt!
   newVotes: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_EIP712DomainChanged {
   id: ID!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_OwnershipTransferred {
   id: ID!
   previousOwner: String!
   newOwner: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyToken_Transfer {
@@ -282,6 +364,8 @@ type RankifyToken_Transfer {
   from: String!
   to: String!
   value: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
 
 type RankifyInstance_TurnEnded {
@@ -293,4 +377,6 @@ type RankifyInstance_TurnEnded {
   newProposals: [String!]!
   proposerIndices: [BigInt!]!
   votes: [[BigInt!]!]!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }
