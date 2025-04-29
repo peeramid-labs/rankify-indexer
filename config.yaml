@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: envio-indexer
+field_selection:
+  transaction_fields:
+    - transactionIndex
 networks:
 - id: 421614
   start_block: 0
@@ -63,9 +66,3 @@ networks:
     - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
     - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
     - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)
-  - name: IssuanceCurve
-    address:
-    - 0x9E8Afe7fc0df8E0a788e2A68B0D4921487EF8350
-    handler: src/EventHandlers.ts
-    events:
-    - event: Buy(address indexed buyer, uint256 amount, uint256 cost)
