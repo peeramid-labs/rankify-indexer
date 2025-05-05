@@ -11,4 +11,4 @@ RUN npm install --global envio@${ENVIO_VERSION}
 ARG COMMIT_HASH_ARG
 ENV COMMIT_HASH=${COMMIT_HASH_ARG}
 
-RUN pnpm dev
+RUN npm dev
