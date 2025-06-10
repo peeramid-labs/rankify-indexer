@@ -391,6 +391,7 @@ type RankifyInstance_ProposingStageEnded {
   gameId: BigInt!
   roundNumber: BigInt!
   numProposals: BigInt!
+  proposals: [String!]!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!

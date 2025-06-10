@@ -99,8 +99,8 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
 });
 
 DAODistributor.Instantiated.contractRegister(({ event, context }) => {
-  context.addRankifyInstance(event.params.instances[2]);
-  context.addRankToken(event.params.instances[11]);
+  context.addRankifyInstance(event.params.instances[3]);
+  context.addRankToken(event.params.instances[5]);
 });
 
 DAODistributor.InstantiationCostChanged.handler(async ({ event, context }) => {
@@ -550,12 +550,12 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
 
   context.RankifyToken_Transfer.set(entity);
 });
-
 RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
   const entity: RankifyInstance_ProposingStageEnded = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     roundNumber: event.params.roundNumber,
+    proposals: event.params.proposals,
     numProposals: event.params.numProposals,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
@@ -581,3 +581,4 @@ RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
 
   context.RankifyInstance_VotingStageResults.set(entity);
 });
+
