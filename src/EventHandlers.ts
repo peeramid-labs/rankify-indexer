@@ -1,7 +1,7 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_TurnEnded, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
+import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_ProposingStageEnded, RankifyInstance_VotingStageResults, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -385,7 +385,7 @@ RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
   const entity: RankifyInstance_ProposalScore = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     proposalHash: event.params.proposalHash,
     proposal: event.params.proposal,
     score: event.params.score,
@@ -401,7 +401,7 @@ RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
   const entity: RankifyInstance_ProposalSubmitted = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     proposer: event.params.proposer,
     commitment: event.params.commitment,
     encryptedProposal: event.params.encryptedProposal,
@@ -446,7 +446,7 @@ RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
   const entity: RankifyInstance_VoteSubmitted = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     player: event.params.player,
     sealedBallotId: event.params.sealedBallotId,
     gmSignature: event.params.gmSignature,
@@ -467,6 +467,8 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
     gm: event.params.gm,
     creator: event.params.creator,
     rank: event.params.rank,
+    proposingPhaseDuration: event.params.proposingPhaseDuration,
+    votePhaseDuration: event.params.votePhaseDuration,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
@@ -549,20 +551,33 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
   context.RankifyToken_Transfer.set(entity);
 });
 
-RankifyInstance.TurnEnded.handler(async ({ event, context }) => {
-  const entity: RankifyInstance_TurnEnded = {
+RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_ProposingStageEnded = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
-    players: event.params.players,
-    scores: event.params.scores,
-    newProposals: event.params.newProposals,
-    proposerIndices: event.params.proposerIndices,
-    votes: event.params.votes,
+    roundNumber: event.params.roundNumber,
+    numProposals: event.params.numProposals,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
   };
 
-  context.RankifyInstance_TurnEnded.set(entity);
+  context.RankifyInstance_ProposingStageEnded.set(entity);
+});
+
+RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_VotingStageResults = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    roundNumber: event.params.roundNumber,
+    winner: event.params.winner,
+    players: event.params.players,
+    scores: event.params.scores,
+    votesSorted: event.params.votesSorted,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+  };
+
+  context.RankifyInstance_VotingStageResults.set(entity);
 });
