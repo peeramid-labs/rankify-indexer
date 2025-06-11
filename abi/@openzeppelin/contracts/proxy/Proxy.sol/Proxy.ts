@@ -1,0 +1,1 @@
+export const abi = [ { stateMutability: 'payable', type: 'fallback' } ] as const; export default abi;

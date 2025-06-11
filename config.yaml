@@ -23,8 +23,10 @@ networks:
     - event: RankTokenExited(address indexed player, uint256 rankId, uint256 amount, uint256 _toMint)
     - event: RegistrationOpen(uint256 indexed gameId)
     - event: VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId, bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
-    - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank)
+    - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256 proposingPhaseDuration, uint256 votePhaseDuration)
     - event: TurnEnded(uint256 indexed gameId, uint256 indexed turn, address[] players, uint256[] scores, string[] newProposals, uint256[] proposerIndices, uint256[][] votes)
+    - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
+    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted)
     # - event: RequirementsConfigured(uint256 indexed gameId, tuple(tuple(uint256 have, uint256 lock, uint256 burn, uint256 pay, uint256 bet) ethValues, tuple(address contractAddress, uint256 contractId, uint8 contractType, tuple(tuple(bytes data, uint256 amount) have, tuple(bytes data, uint256 amount) lock, tuple(bytes data, uint256 amount) burn, tuple(bytes data, uint256 amount) pay, tuple(bytes data, uint256 amount) bet) contractRequirement)[] contracts) config)
   - name: RankifyToken
     address:

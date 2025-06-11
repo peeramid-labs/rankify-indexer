@@ -2,17 +2,6 @@ export const abi = [
   {
     inputs: [
       {
-        internalType: 'address',
-        name: 'trustedForwarder',
-        type: 'address'
-      },
-      {
-        internalType: 'address',
-        name: 'paymentToken',
-        type: 'address'
-      },
-      { internalType: 'address', name: 'beneficiary', type: 'address' },
-      {
         internalType: 'address[]',
         name: 'zkpVerifier',
         type: 'address[]'
@@ -37,6 +26,7 @@ export const abi = [
         name: 'governanceERC20BaseId',
         type: 'bytes32'
       },
+      { internalType: 'bytes32', name: 'DAOId', type: 'bytes32' },
       {
         internalType: 'string',
         name: 'distributionName',
@@ -117,10 +107,40 @@ export const abi = [
                 internalType: 'string',
                 name: 'tokenSymbol',
                 type: 'string'
+              },
+              {
+                internalType: 'uint256[]',
+                name: 'preMintAmounts',
+                type: 'uint256[]'
+              },
+              {
+                internalType: 'address[]',
+                name: 'preMintReceivers',
+                type: 'address[]'
+              },
+              {
+                internalType: 'string',
+                name: 'orgName',
+                type: 'string'
+              },
+              {
+                internalType: 'uint48',
+                name: 'votingDelay',
+                type: 'uint48'
+              },
+              {
+                internalType: 'uint32',
+                name: 'votingPeriod',
+                type: 'uint32'
+              },
+              {
+                internalType: 'uint256',
+                name: 'quorum',
+                type: 'uint256'
               }
             ],
-            internalType: 'struct MAODistribution.TokenArguments',
-            name: 'tokenSettings',
+            internalType: 'struct MAODistribution.GovernanceArgs',
+            name: 'govSettings',
             type: 'tuple'
           },
           {
@@ -144,6 +164,11 @@ export const abi = [
                 internalType: 'string',
                 name: 'rankTokenContractURI',
                 type: 'string'
+              },
+              {
+                internalType: 'address',
+                name: 'paymentToken',
+                type: 'address'
               }
             ],
             internalType: 'struct MAODistribution.UserRankifySettings',
@@ -171,10 +196,40 @@ export const abi = [
                 internalType: 'string',
                 name: 'tokenSymbol',
                 type: 'string'
+              },
+              {
+                internalType: 'uint256[]',
+                name: 'preMintAmounts',
+                type: 'uint256[]'
+              },
+              {
+                internalType: 'address[]',
+                name: 'preMintReceivers',
+                type: 'address[]'
+              },
+              {
+                internalType: 'string',
+                name: 'orgName',
+                type: 'string'
+              },
+              {
+                internalType: 'uint48',
+                name: 'votingDelay',
+                type: 'uint48'
+              },
+              {
+                internalType: 'uint32',
+                name: 'votingPeriod',
+                type: 'uint32'
+              },
+              {
+                internalType: 'uint256',
+                name: 'quorum',
+                type: 'uint256'
               }
             ],
-            internalType: 'struct MAODistribution.TokenArguments',
-            name: 'tokenSettings',
+            internalType: 'struct MAODistribution.GovernanceArgs',
+            name: 'govSettings',
             type: 'tuple'
           },
           {
@@ -198,6 +253,11 @@ export const abi = [
                 internalType: 'string',
                 name: 'rankTokenContractURI',
                 type: 'string'
+              },
+              {
+                internalType: 'address',
+                name: 'paymentToken',
+                type: 'address'
               }
             ],
             internalType: 'struct MAODistribution.UserRankifySettings',

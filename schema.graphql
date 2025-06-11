@@ -267,7 +267,7 @@ type RankifyInstance_PlayerLeft {
 type RankifyInstance_ProposalScore {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   proposalHash: String!
   proposal: String!
   score: BigInt!
@@ -279,7 +279,7 @@ type RankifyInstance_ProposalScore {
 type RankifyInstance_ProposalSubmitted {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   proposer: String!
   commitment: BigInt!
   encryptedProposal: String!
@@ -312,7 +312,7 @@ type RankifyInstance_RegistrationOpen {
 type RankifyInstance_VoteSubmitted {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   player: String!
   sealedBallotId: String!
   gmSignature: String!
@@ -329,6 +329,8 @@ type RankifyInstance_gameCreated {
   gm: String!
   creator: String!
   rank: BigInt!
+  proposingPhaseDuration: BigInt!
+  votePhaseDuration: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
@@ -384,15 +386,25 @@ type RankifyToken_Transfer {
   blockTimestamp: String!
 }
 
-type RankifyInstance_TurnEnded {
+type RankifyInstance_ProposingStageEnded {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
+  numProposals: BigInt!
+  proposals: [String!]!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+  srcAddress: String!
+}
+
+type RankifyInstance_VotingStageResults {
+  id: ID!
+  gameId: BigInt!
+  roundNumber: BigInt!
+  winner: String!
   players: [String!]!
   scores: [BigInt!]!
-  newProposals: [String!]!
-  proposerIndices: [BigInt!]!
-  votes: [[BigInt!]!]!
+  votesSorted: [[BigInt!]!]!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!

@@ -32,10 +32,18 @@ networks:
           - event: >-
               VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId,
               bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
-          - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank)
+          - event: >-
+              gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256
+              proposingPhaseDuration, uint256 votePhaseDuration)
           - event: >-
               TurnEnded(uint256 indexed gameId, uint256 indexed turn, address[] players, uint256[] scores, string[]
               newProposals, uint256[] proposerIndices, uint256[][] votes)
+          - event: >-
+              ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[]
+              proposals)
+          - event: >-
+              VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[]
+              players, uint256[] scores, uint256[][] votesSorted)
       - name: RankifyToken
         address:
           - ${RANKIFY_TOKEN_ADDRESS}
