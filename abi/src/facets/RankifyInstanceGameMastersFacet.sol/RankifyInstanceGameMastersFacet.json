@@ -2,6 +2,33 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ErrorCannotForceEndGame",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum IRankifyInstance.ProposingEndStatus",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "name": "ErrorProposingStageEndFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bytes32",
         "name": "ballotHash",
         "type": "bytes32"
@@ -29,27 +56,6 @@
       }
     ],
     "name": "invalidECDSARecoverSigner",
-    "type": "error"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "parameter",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "arg",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "arg2",
-        "type": "uint256"
-      }
-    ],
-    "name": "quadraticVotingError",
     "type": "error"
   },
   {
@@ -201,41 +207,42 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "turn",
+        "name": "roundNumber",
         "type": "uint256"
       },
       {
         "indexed": false,
-        "internalType": "address[]",
-        "name": "players",
-        "type": "address[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "scores",
-        "type": "uint256[]"
+        "internalType": "uint256",
+        "name": "numProposals",
+        "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "string[]",
-        "name": "newProposals",
+        "name": "proposals",
         "type": "string[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "proposerIndices",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[][]",
-        "name": "votes",
-        "type": "uint256[][]"
       }
     ],
-    "name": "TurnEnded",
+    "name": "ProposingStageEnded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "winner",
+        "type": "address"
+      }
+    ],
+    "name": "StaleGameEnded",
     "type": "event"
   },
   {
@@ -288,16 +295,66 @@
     "type": "event"
   },
   {
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
         "internalType": "uint256",
         "name": "gameId",
         "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "roundNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "winner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "players",
+        "type": "address[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "scores",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256[][]",
-        "name": "votes",
+        "name": "votesSorted",
         "type": "uint256[][]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool[]",
+        "name": "isActive",
+        "type": "bool[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[][]",
+        "name": "finalizedVotingMatrix",
+        "type": "uint256[][]"
+      }
+    ],
+    "name": "VotingStageResults",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
       },
       {
         "components": [
@@ -330,6 +387,24 @@
         "internalType": "struct RankifyInstanceGameMastersFacet.BatchProposalReveal",
         "name": "newProposals",
         "type": "tuple"
+      }
+    ],
+    "name": "endProposing",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256[][]",
+        "name": "votes",
+        "type": "uint256[][]"
       },
       {
         "internalType": "uint256[]",
@@ -342,7 +417,20 @@
         "type": "uint256"
       }
     ],
-    "name": "endTurn",
+    "name": "endVoting",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "gameId",
+        "type": "uint256"
+      }
+    ],
+    "name": "forceEndStaleGame",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
