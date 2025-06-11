@@ -24,9 +24,9 @@ networks:
     - event: RegistrationOpen(uint256 indexed gameId)
     - event: VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId, bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
     - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256 proposingPhaseDuration, uint256 votePhaseDuration)
-    - event: TurnEnded(uint256 indexed gameId, uint256 indexed turn, address[] players, uint256[] scores, string[] newProposals, uint256[] proposerIndices, uint256[][] votes)
     - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
-    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted)
+    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
+    - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
     # - event: RequirementsConfigured(uint256 indexed gameId, tuple(tuple(uint256 have, uint256 lock, uint256 burn, uint256 pay, uint256 bet) ethValues, tuple(address contractAddress, uint256 contractId, uint8 contractType, tuple(tuple(bytes data, uint256 amount) have, tuple(bytes data, uint256 amount) lock, tuple(bytes data, uint256 amount) burn, tuple(bytes data, uint256 amount) pay, tuple(bytes data, uint256 amount) bet) contractRequirement)[] contracts) config)
   - name: RankifyToken
     address:
@@ -68,3 +68,15 @@ networks:
     - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
     - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
     - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)
+  - name: Governor
+    handler: src/EventHandlers.ts
+    events:
+      - event: ProposalCreated(uint256 proposalId, address proposer, address[] targets, uint256[] values, string[] signatures, bytes[] calldatas, uint256 voteStart, uint256 voteEnd, string description)
+      - event: VoteCast(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason)
+      - event: ProposalCanceled(uint256 proposalId)
+      - event: ProposalQueued(uint256 proposalId, uint256 eta)
+      - event: ProposalExecuted(uint256 proposalId)
+      - event: VotingDelaySet(uint256 oldVotingDelay, uint256 newVotingDelay)
+      - event: VotingPeriodSet(uint256 oldVotingPeriod, uint256 newVotingPeriod)
+      - event: ProposalThresholdSet(uint256 oldProposalThreshold, uint256 newProposalThreshold)
+      - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)
