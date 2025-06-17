@@ -3,7 +3,8 @@ export const abi = [
     inputs: [
       { internalType: 'string', name: 'uri_', type: 'string' },
       { internalType: 'string', name: 'cURI', type: 'string' },
-      { internalType: 'address', name: 'accessLayer', type: 'address' }
+      { internalType: 'address', name: 'accessLayer', type: 'address' },
+      { internalType: 'address', name: 'owner_', type: 'address' }
     ],
     stateMutability: 'nonpayable',
     type: 'constructor'
@@ -61,6 +62,16 @@ export const abi = [
   { inputs: [], name: 'InvalidInitialization', type: 'error' },
   { inputs: [], name: 'NotInitializing', type: 'error' },
   {
+    inputs: [ { internalType: 'address', name: 'owner', type: 'address' } ],
+    name: 'OwnableInvalidOwner',
+    type: 'error'
+  },
+  {
+    inputs: [ { internalType: 'address', name: 'account', type: 'address' } ],
+    name: 'OwnableUnauthorizedAccount',
+    type: 'error'
+  },
+  {
     inputs: [
       { internalType: 'uint256', name: 'id', type: 'uint256' },
       { internalType: 'uint256', name: 'balance', type: 'uint256' },
@@ -105,6 +116,25 @@ export const abi = [
       }
     ],
     name: 'Initialized',
+    type: 'event'
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'previousOwner',
+        type: 'address'
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'newOwner',
+        type: 'address'
+      }
+    ],
+    name: 'OwnershipTransferred',
     type: 'event'
   },
   {
@@ -332,7 +362,8 @@ export const abi = [
     inputs: [
       { internalType: 'string', name: 'uri_', type: 'string' },
       { internalType: 'string', name: 'cURI', type: 'string' },
-      { internalType: 'address', name: 'accessLayer', type: 'address' }
+      { internalType: 'address', name: 'accessLayer', type: 'address' },
+      { internalType: 'address', name: 'owner_', type: 'address' }
     ],
     name: 'initialize',
     outputs: [],
@@ -368,6 +399,20 @@ export const abi = [
       { internalType: 'bytes', name: 'data', type: 'bytes' }
     ],
     name: 'mint',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'owner',
+    outputs: [ { internalType: 'address', name: '', type: 'address' } ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'renounceOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function'
@@ -427,6 +472,13 @@ export const abi = [
     name: 'supportsInterface',
     outputs: [ { internalType: 'bool', name: '', type: 'bool' } ],
     stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [ { internalType: 'address', name: 'newOwner', type: 'address' } ],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function'
   },
   {

@@ -267,7 +267,7 @@ type RankifyInstance_PlayerLeft {
 type RankifyInstance_ProposalScore {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   proposalHash: String!
   proposal: String!
   score: BigInt!
@@ -279,7 +279,7 @@ type RankifyInstance_ProposalScore {
 type RankifyInstance_ProposalSubmitted {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   proposer: String!
   commitment: BigInt!
   encryptedProposal: String!
@@ -312,7 +312,7 @@ type RankifyInstance_RegistrationOpen {
 type RankifyInstance_VoteSubmitted {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
+  roundNumber: BigInt!
   player: String!
   sealedBallotId: String!
   gmSignature: String!
@@ -329,6 +329,8 @@ type RankifyInstance_gameCreated {
   gm: String!
   creator: String!
   rank: BigInt!
+  proposingPhaseDuration: BigInt!
+  votePhaseDuration: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
@@ -384,16 +386,109 @@ type RankifyToken_Transfer {
   blockTimestamp: String!
 }
 
-type RankifyInstance_TurnEnded {
+type RankifyInstance_ProposingStageEnded {
   id: ID!
   gameId: BigInt!
-  turn: BigInt!
-  players: [String!]!
-  scores: [BigInt!]!
-  newProposals: [String!]!
-  proposerIndices: [BigInt!]!
-  votes: [[BigInt!]!]!
+  roundNumber: BigInt!
+  numProposals: BigInt!
+  proposals: [String!]!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+}
+
+type RankifyInstance_VotingStageResults {
+  id: ID!
+  gameId: BigInt!
+  roundNumber: BigInt!
+  winner: String!
+  players: [String!]!
+  scores: [BigInt!]!
+  votesSorted: [[BigInt!]!]!
+  isActive: [Int!]!
+  finalizedVotingMatrix: [[BigInt!]!]!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+  srcAddress: String!
+}
+
+type RankifyInstance_StaleGameEnded @entity {
+  id: ID!
+  gameId: BigInt!
+  winner: String!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+  srcAddress: String!
+}
+
+type GovernorProposal @entity {
+  id: ID! # proposalId
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  proposer: String! # Address of the proposer
+  targets: [String!]!
+  values: [BigInt!]!
+  signatures: [String!]! # Function signatures
+  calldatas: [Bytes!]!
+  voteStart: BigInt! # Block number
+  voteEnd: BigInt! # Block number
+  description: String!
+  state: String! # e.g., Pending, Active, Canceled, Defeated, Succeeded, Queued, Expired, Executed
+  eta: BigInt # Execution timestamp, if queued
+  votes: [GovernorVote!]! @derivedFrom(field: "proposal") # MODIFIED: Made the list itself non-nullable
+  forVotes: BigInt!
+  againstVotes: BigInt!
+  abstainVotes: BigInt!
+  canceled: Boolean!
+  executed: Boolean!
+  queued: Boolean!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+}
+
+type GovernorVote @entity {
+  id: ID! # Combination of voter address and proposalId
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  voter: String! # Address of the voter
+  proposal: GovernorProposal! # Link to the proposal entity by its ID (proposalId)
+  support: Int! # 0: Against, 1: For, 2: Abstain
+  weight: BigInt!
+  reason: String
+  blockNumber: BigInt!
+  blockTimestamp: String!
+}
+
+type GovernorVotingDelaySet @entity {
+  id: ID! # transaction hash + log index
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  oldVotingDelay: BigInt!
+  newVotingDelay: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+}
+
+type GovernorVotingPeriodSet @entity {
+  id: ID!
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  oldVotingPeriod: BigInt!
+  newVotingPeriod: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+}
+
+type GovernorProposalThresholdSet @entity {
+  id: ID!
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  oldProposalThreshold: BigInt!
+  newProposalThreshold: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
+}
+
+type GovernorQuorumNumeratorUpdated @entity {
+  id: ID!
+  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+  oldQuorumNumerator: BigInt!
+  newQuorumNumerator: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: String!
 }

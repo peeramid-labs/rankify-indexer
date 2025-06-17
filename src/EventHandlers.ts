@@ -1,7 +1,75 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import { DAODistributor, DAODistributor_Debug, DAODistributor_DefaultAdminDelayChangeCanceled, DAODistributor_DefaultAdminDelayChangeScheduled, DAODistributor_DefaultAdminTransferCanceled, DAODistributor_DefaultAdminTransferScheduled, DAODistributor_DistributionAdded, DAODistributor_DistributionRemoved, DAODistributor_Instantiated, DAODistributor_InstantiationCostChanged, DAODistributor_RoleAdminChanged, DAODistributor_RoleGranted, DAODistributor_RoleRevoked, DAODistributor_VersionChanged, RankToken, RankToken_ApprovalForAll, RankToken_Initialized, RankToken_RankingInstanceUpdated, RankToken_TokensLocked, RankToken_TokensUnlocked, RankToken_TransferBatch, RankToken_TransferSingle, RankToken_URI, RankifyInstance, RankifyInstance_GameClosed, RankifyInstance_GameOver, RankifyInstance_GameStarted, RankifyInstance_LastTurn, RankifyInstance_OverTime, RankifyInstance_OwnershipTransferred, RankifyInstance_PlayerJoined, RankifyInstance_PlayerLeft, RankifyInstance_ProposalScore, RankifyInstance_ProposalSubmitted, RankifyInstance_RankTokenExited, RankifyInstance_RegistrationOpen, RankifyInstance_TurnEnded, RankifyInstance_VoteSubmitted, RankifyInstance_gameCreated, RankifyToken, RankifyToken_Approval, RankifyToken_DelegateChanged, RankifyToken_DelegateVotesChanged, RankifyToken_EIP712DomainChanged, RankifyToken_OwnershipTransferred, RankifyToken_Transfer } from "generated";
+import {
+  DAODistributor,
+  DAODistributor_Debug,
+  DAODistributor_DefaultAdminDelayChangeCanceled,
+  DAODistributor_DefaultAdminDelayChangeScheduled,
+  DAODistributor_DefaultAdminTransferCanceled,
+  DAODistributor_DefaultAdminTransferScheduled,
+  DAODistributor_DistributionAdded,
+  DAODistributor_DistributionRemoved,
+  DAODistributor_Instantiated,
+  DAODistributor_InstantiationCostChanged,
+  DAODistributor_RoleAdminChanged,
+  DAODistributor_RoleGranted,
+  DAODistributor_RoleRevoked,
+  DAODistributor_VersionChanged,
+  RankToken,
+  RankToken_ApprovalForAll,
+  RankToken_Initialized,
+  RankToken_RankingInstanceUpdated,
+  RankToken_TokensLocked,
+  RankToken_TokensUnlocked,
+  RankToken_TransferBatch,
+  RankToken_TransferSingle,
+  RankToken_URI,
+  RankifyInstance,
+  RankifyInstance_GameClosed,
+  RankifyInstance_GameOver,
+  RankifyInstance_GameStarted,
+  RankifyInstance_LastTurn,
+  RankifyInstance_OverTime,
+  RankifyInstance_OwnershipTransferred,
+  RankifyInstance_PlayerJoined,
+  RankifyInstance_PlayerLeft,
+  RankifyInstance_ProposalScore,
+  RankifyInstance_ProposalSubmitted,
+  RankifyInstance_RankTokenExited,
+  RankifyInstance_RegistrationOpen,
+  RankifyInstance_ProposingStageEnded,
+  RankifyInstance_VotingStageResults,
+  RankifyInstance_VoteSubmitted,
+  RankifyInstance_gameCreated,
+  RankifyInstance_StaleGameEnded,
+  RankifyToken,
+  RankifyToken_Approval,
+  RankifyToken_DelegateChanged,
+  RankifyToken_DelegateVotesChanged,
+  RankifyToken_EIP712DomainChanged,
+  RankifyToken_OwnershipTransferred,
+  RankifyToken_Transfer,
+  Governor,
+  Governor_ProposalCreated_eventArgs,
+  Governor_VoteCast_eventArgs,
+  Governor_ProposalCanceled_eventArgs,
+  Governor_ProposalQueued_eventArgs,
+  Governor_ProposalExecuted_eventArgs,
+  Governor_VotingDelaySet_eventArgs,
+  Governor_VotingPeriodSet_eventArgs,
+  Governor_ProposalThresholdSet_eventArgs,
+  Governor_QuorumNumeratorUpdated_eventArgs,
+  RankifyInstance_StaleGameEnded_eventArgs,
+  GovernorProposal,
+  GovernorVote,
+  GovernorVotingDelaySet,
+  GovernorVotingPeriodSet,
+  GovernorProposalThresholdSet,
+  GovernorQuorumNumeratorUpdated,
+  DAODistributor_Instantiated_eventArgs,
+} from "generated";
+import { BytesLike } from "ethers";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -84,7 +152,7 @@ DAODistributor.DistributionRemoved.handler(async ({ event, context }) => {
 });
 
 DAODistributor.Instantiated.handler(async ({ event, context }) => {
-  const entity: DAODistributor_Instantiated = {
+  const instantiatedEntity: DAODistributor_Instantiated = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     distributionId: event.params.distributionId,
     newInstanceId: event.params.newInstanceId,
@@ -94,13 +162,13 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
   };
-
-  context.DAODistributor_Instantiated.set(entity);
+  context.DAODistributor_Instantiated.set(instantiatedEntity);
 });
 
 DAODistributor.Instantiated.contractRegister(({ event, context }) => {
-  context.addRankifyInstance(event.params.instances[2]);
-  context.addRankToken(event.params.instances[11]);
+  context.addRankifyInstance(event.params.instances[3]);
+  context.addRankToken(event.params.instances[5]);
+  context.addGovernor(event.params.instances[2]);
 });
 
 DAODistributor.InstantiationCostChanged.handler(async ({ event, context }) => {
@@ -385,7 +453,7 @@ RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
   const entity: RankifyInstance_ProposalScore = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     proposalHash: event.params.proposalHash,
     proposal: event.params.proposal,
     score: event.params.score,
@@ -401,7 +469,7 @@ RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
   const entity: RankifyInstance_ProposalSubmitted = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     proposer: event.params.proposer,
     commitment: event.params.commitment,
     encryptedProposal: event.params.encryptedProposal,
@@ -446,7 +514,7 @@ RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
   const entity: RankifyInstance_VoteSubmitted = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
-    turn: event.params.turn,
+    roundNumber: event.params.turn,
     player: event.params.player,
     sealedBallotId: event.params.sealedBallotId,
     gmSignature: event.params.gmSignature,
@@ -467,12 +535,60 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
     gm: event.params.gm,
     creator: event.params.creator,
     rank: event.params.rank,
+    proposingPhaseDuration: event.params.proposingPhaseDuration,
+    votePhaseDuration: event.params.votePhaseDuration,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
   };
 
   context.RankifyInstance_gameCreated.set(entity);
+});
+
+RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_ProposingStageEnded = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    roundNumber: event.params.roundNumber,
+    numProposals: event.params.numProposals,
+    proposals: event.params.proposals,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+  };
+
+  context.RankifyInstance_ProposingStageEnded.set(entity);
+});
+
+RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_VotingStageResults = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    roundNumber: event.params.roundNumber,
+    winner: event.params.winner,
+    players: event.params.players,
+    scores: event.params.scores,
+    votesSorted: event.params.votesSorted,
+    isActive: event.params.isActive.map((active) => (active ? 1 : 0)),
+    finalizedVotingMatrix: event.params.finalizedVotingMatrix,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+  };
+
+  context.RankifyInstance_VotingStageResults.set(entity);
+});
+
+RankifyInstance.StaleGameEnded.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_StaleGameEnded = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    winner: event.params.winner,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+  };
+  context.RankifyInstance_StaleGameEnded.set(entity);
 });
 
 RankifyToken.Approval.handler(async ({ event, context }) => {
@@ -549,20 +665,157 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
   context.RankifyToken_Transfer.set(entity);
 });
 
-RankifyInstance.TurnEnded.handler(async ({ event, context }) => {
-  const entity: RankifyInstance_TurnEnded = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    gameId: event.params.gameId,
-    turn: event.params.turn,
-    players: event.params.players,
-    scores: event.params.scores,
-    newProposals: event.params.newProposals,
-    proposerIndices: event.params.proposerIndices,
-    votes: event.params.votes,
+Governor.ProposalCreated.handler(async ({ event, context }) => {
+  const proposal: GovernorProposal = {
+    id: event.params.proposalId.toString(),
+    governorAddress: event.srcAddress,
+    proposer: event.params.proposer,
+    targets: event.params.targets,
+    values: event.params.values,
+    signatures: event.params.signatures,
+    calldatas: event.params.calldatas,
+    voteStart: event.params.voteStart,
+    voteEnd: event.params.voteEnd,
+    description: event.params.description,
+    state: "Pending",
+    eta: BigInt(0),
+    forVotes: BigInt(0),
+    againstVotes: BigInt(0),
+    abstainVotes: BigInt(0),
+    canceled: false,
+    executed: false,
+    queued: false,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-    srcAddress: event.srcAddress,
   };
 
-  context.RankifyInstance_TurnEnded.set(entity);
+  context.GovernorProposal.set(proposal);
+});
+
+Governor.VoteCast.handler(async ({ event, context }) => {
+  const voteId = `${event.params.voter}-${event.params.proposalId.toString()}`;
+  const vote: GovernorVote = {
+    id: voteId,
+    governorAddress: event.srcAddress,
+    voter: event.params.voter,
+    proposal_id: event.params.proposalId.toString(),
+    support: Number(event.params.support),
+    weight: event.params.weight,
+    reason: event.params.reason,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+  };
+  context.GovernorVote.set(vote);
+
+  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  if (proposal) {
+    const currentForVotes = proposal.forVotes || BigInt(0);
+    const currentAgainstVotes = proposal.againstVotes || BigInt(0);
+    const currentAbstainVotes = proposal.abstainVotes || BigInt(0);
+
+    let updatedProposal = { ...proposal };
+
+    if (Number(event.params.support) === 0) {
+      updatedProposal.againstVotes = currentAgainstVotes + event.params.weight;
+    } else if (Number(event.params.support) === 1) {
+      updatedProposal.forVotes = currentForVotes + event.params.weight;
+    } else if (Number(event.params.support) === 2) {
+      updatedProposal.abstainVotes = currentAbstainVotes + event.params.weight;
+    }
+    if (proposal.state === "Pending" && BigInt(event.block.number) >= proposal.voteStart) {
+      updatedProposal.state = "Active";
+    }
+    context.GovernorProposal.set(updatedProposal);
+  }
+});
+
+Governor.ProposalCanceled.handler(async ({ event, context }) => {
+  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  if (proposal) {
+    const updatedProposal = {
+      ...proposal,
+      state: "Canceled",
+      canceled: true,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    };
+    context.GovernorProposal.set(updatedProposal);
+  }
+});
+
+Governor.ProposalQueued.handler(async ({ event, context }) => {
+  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  if (proposal) {
+    const updatedProposal = {
+      ...proposal,
+      state: "Queued",
+      eta: event.params.eta,
+      queued: true,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    };
+    context.GovernorProposal.set(updatedProposal);
+  }
+});
+
+Governor.ProposalExecuted.handler(async ({ event, context }) => {
+  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  if (proposal) {
+    const updatedProposal = {
+      ...proposal,
+      state: "Executed",
+      executed: true,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    };
+    context.GovernorProposal.set(updatedProposal);
+  }
+});
+
+Governor.VotingDelaySet.handler(async ({ event, context }) => {
+  const entity: GovernorVotingDelaySet = {
+    id: `${event.block.number}-${event.logIndex}`,
+    governorAddress: event.srcAddress,
+    oldVotingDelay: event.params.oldVotingDelay,
+    newVotingDelay: event.params.newVotingDelay,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+  };
+  context.GovernorVotingDelaySet.set(entity);
+});
+
+Governor.VotingPeriodSet.handler(async ({ event, context }) => {
+  const entity: GovernorVotingPeriodSet = {
+    id: `${event.block.number}-${event.logIndex}`,
+    governorAddress: event.srcAddress,
+    oldVotingPeriod: event.params.oldVotingPeriod,
+    newVotingPeriod: event.params.newVotingPeriod,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+  };
+  context.GovernorVotingPeriodSet.set(entity);
+});
+
+Governor.ProposalThresholdSet.handler(async ({ event, context }) => {
+  const entity: GovernorProposalThresholdSet = {
+    id: `${event.block.number}-${event.logIndex}`,
+    governorAddress: event.srcAddress,
+    oldProposalThreshold: event.params.oldProposalThreshold,
+    newProposalThreshold: event.params.newProposalThreshold,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+  };
+  context.GovernorProposalThresholdSet.set(entity);
+});
+
+Governor.QuorumNumeratorUpdated.handler(async ({ event, context }) => {
+  const entity: GovernorQuorumNumeratorUpdated = {
+    id: `${event.block.number}-${event.logIndex}`,
+    governorAddress: event.srcAddress,
+    oldQuorumNumerator: event.params.oldQuorumNumerator,
+    newQuorumNumerator: event.params.newQuorumNumerator,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+  };
+  context.GovernorQuorumNumeratorUpdated.set(entity);
 });

@@ -1,164 +1,5 @@
 export const abi = [
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: 'uint256',
-        name: 'gameId',
-        type: 'uint256'
-      },
-      {
-        components: [
-          {
-            components: [
-              {
-                internalType: 'uint256',
-                name: 'have',
-                type: 'uint256'
-              },
-              {
-                internalType: 'uint256',
-                name: 'lock',
-                type: 'uint256'
-              },
-              {
-                internalType: 'uint256',
-                name: 'burn',
-                type: 'uint256'
-              },
-              { internalType: 'uint256', name: 'pay', type: 'uint256' },
-              { internalType: 'uint256', name: 'bet', type: 'uint256' }
-            ],
-            internalType: 'struct LibCoinVending.NumericCondition',
-            name: 'ethValues',
-            type: 'tuple'
-          },
-          {
-            components: [
-              {
-                internalType: 'address',
-                name: 'contractAddress',
-                type: 'address'
-              },
-              {
-                internalType: 'uint256',
-                name: 'contractId',
-                type: 'uint256'
-              },
-              {
-                internalType: 'enum LibCoinVending.ContractTypes',
-                name: 'contractType',
-                type: 'uint8'
-              },
-              {
-                components: [
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'have',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'lock',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'burn',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'pay',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'bet',
-                    type: 'tuple'
-                  }
-                ],
-                internalType: 'struct LibCoinVending.ContractCondition',
-                name: 'contractRequirement',
-                type: 'tuple'
-              }
-            ],
-            internalType: 'struct LibCoinVending.configSmartRequirement[]',
-            name: 'contracts',
-            type: 'tuple[]'
-          }
-        ],
-        indexed: false,
-        internalType: 'struct LibCoinVending.ConfigPosition',
-        name: 'config',
-        type: 'tuple'
-      }
-    ],
-    name: 'RequirementsConfigured',
-    type: 'event'
-  },
-  {
     inputs: [],
     name: 'getCommonParams',
     outputs: [
@@ -247,27 +88,12 @@ export const abi = [
           },
           {
             internalType: 'uint256',
-            name: 'numOngoingProposals',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'numPrevProposals',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
             name: 'numCommitments',
             type: 'uint256'
           },
           {
             internalType: 'uint256',
-            name: 'numVotesThisTurn',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'numVotesPrevTurn',
+            name: 'numVotes',
             type: 'uint256'
           },
           {
@@ -305,11 +131,6 @@ export const abi = [
           {
             internalType: 'uint256',
             name: 'registrationOpenAt',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'startedAt',
             type: 'uint256'
           },
           { internalType: 'bool', name: 'hasStarted', type: 'bool' },
@@ -360,7 +181,23 @@ export const abi = [
             name: 'gameMaster',
             type: 'address'
           },
-          { internalType: 'string', name: 'metadata', type: 'string' }
+          { internalType: 'string', name: 'metadata', type: 'string' },
+          { internalType: 'uint256', name: 'phase', type: 'uint256' },
+          {
+            internalType: 'uint256',
+            name: 'votePhaseDuration',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'proposingPhaseDuration',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'phaseStartedAt',
+            type: 'uint256'
+          }
         ],
         internalType: 'struct IRankifyInstance.GameStateOutput',
         name: 'state',
@@ -531,160 +368,6 @@ export const abi = [
       }
     ],
     stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      { internalType: 'uint256', name: 'gameId', type: 'uint256' },
-      {
-        components: [
-          {
-            components: [
-              {
-                internalType: 'uint256',
-                name: 'have',
-                type: 'uint256'
-              },
-              {
-                internalType: 'uint256',
-                name: 'lock',
-                type: 'uint256'
-              },
-              {
-                internalType: 'uint256',
-                name: 'burn',
-                type: 'uint256'
-              },
-              { internalType: 'uint256', name: 'pay', type: 'uint256' },
-              { internalType: 'uint256', name: 'bet', type: 'uint256' }
-            ],
-            internalType: 'struct LibCoinVending.NumericCondition',
-            name: 'ethValues',
-            type: 'tuple'
-          },
-          {
-            components: [
-              {
-                internalType: 'address',
-                name: 'contractAddress',
-                type: 'address'
-              },
-              {
-                internalType: 'uint256',
-                name: 'contractId',
-                type: 'uint256'
-              },
-              {
-                internalType: 'enum LibCoinVending.ContractTypes',
-                name: 'contractType',
-                type: 'uint8'
-              },
-              {
-                components: [
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'have',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'lock',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'burn',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'pay',
-                    type: 'tuple'
-                  },
-                  {
-                    components: [
-                      {
-                        internalType: 'bytes',
-                        name: 'data',
-                        type: 'bytes'
-                      },
-                      {
-                        internalType: 'uint256',
-                        name: 'amount',
-                        type: 'uint256'
-                      }
-                    ],
-                    internalType: 'struct LibCoinVending.TransactionProperties',
-                    name: 'bet',
-                    type: 'tuple'
-                  }
-                ],
-                internalType: 'struct LibCoinVending.ContractCondition',
-                name: 'contractRequirement',
-                type: 'tuple'
-              }
-            ],
-            internalType: 'struct LibCoinVending.configSmartRequirement[]',
-            name: 'contracts',
-            type: 'tuple[]'
-          }
-        ],
-        internalType: 'struct LibCoinVending.ConfigPosition',
-        name: 'config',
-        type: 'tuple'
-      }
-    ],
-    name: 'setJoinRequirements',
-    outputs: [],
-    stateMutability: 'nonpayable',
     type: 'function'
   }
 ] as const; export default abi;

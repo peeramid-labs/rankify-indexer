@@ -222,55 +222,6 @@
         "type": "uint256"
       },
       {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "players",
-        "type": "address[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "scores",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "string[]",
-        "name": "newProposals",
-        "type": "string[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "proposerIndices",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[][]",
-        "name": "votes",
-        "type": "uint256[][]"
-      }
-    ],
-    "name": "TurnEnded",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "gameId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "turn",
-        "type": "uint256"
-      },
-      {
         "indexed": true,
         "internalType": "address",
         "name": "player",

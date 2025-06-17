@@ -125,25 +125,6 @@ export const abi = [
   },
   {
     anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: 'bytes32',
-        name: 'distributorsId',
-        type: 'bytes32'
-      },
-      {
-        indexed: false,
-        internalType: 'bytes',
-        name: 'args',
-        type: 'bytes'
-      }
-    ],
-    name: 'Debug',
-    type: 'event'
-  },
-  {
-    anonymous: false,
     inputs: [],
     name: 'DefaultAdminDelayChangeCanceled',
     type: 'event'
