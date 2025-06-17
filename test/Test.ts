@@ -29,6 +29,8 @@ describe("DAODistributor contract Debug event tests", () => {
       id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
       distributorsId: event.params.distributorsId,
       args: event.params.args,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     };
     // Asserting that the entity in the mock database is the same as the expected entity
     assert.deepEqual(actualDAODistributorDebug, expectedDAODistributorDebug, "Actual DAODistributorDebug should be the same as the expectedDAODistributorDebug");
