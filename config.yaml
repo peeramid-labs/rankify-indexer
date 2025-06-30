@@ -9,6 +9,7 @@ networks:
   contracts:
   - name: RankifyInstance
     handler: src/EventHandlers.ts
+    abi_file_path: ./abi/RankifyInstance.json
     events:
     - event: GameClosed(uint256 indexed gameId)
     - event: GameOver(uint256 indexed gameId, address[] players, uint256[] scores)
@@ -27,7 +28,7 @@ networks:
     - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
     - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
     - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
-    # - event: RequirementsConfigured(uint256 indexed gameId, tuple(tuple(uint256 have, uint256 lock, uint256 burn, uint256 pay, uint256 bet) ethValues, tuple(address contractAddress, uint256 contractId, uint8 contractType, tuple(tuple(bytes data, uint256 amount) have, tuple(bytes data, uint256 amount) lock, tuple(bytes data, uint256 amount) burn, tuple(bytes data, uint256 amount) pay, tuple(bytes data, uint256 amount) bet) contractRequirement)[] contracts) config)
+    - event: RequirementsConfigured
   - name: RankifyToken
     address:
     - 0x21C68Aa0be617ebE09138d185BF2ff804131A8da
