@@ -10,6 +10,7 @@ networks:
     contracts:
       - name: RankifyInstance
         handler: src/EventHandlers.ts
+        abi_file_path: ./abi/RankifyInstance.json
         events:
           - event: GameClosed(uint256 indexed gameId)
           - event: GameOver(uint256 indexed gameId, address[] players, uint256[] scores)
@@ -42,6 +43,7 @@ networks:
               VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[]
               players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
           - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
+          - event: RequirementsConfigured
       - name: RankifyToken
         address:
           - ${RANKIFY_TOKEN_ADDRESS}
