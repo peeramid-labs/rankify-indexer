@@ -313,6 +313,38 @@ type RankifyInstance_RegistrationOpen @entity {
   srcAddress: String!
 }
 
+type RequirementsConfigured_Contract {
+  id: ID!
+  requirementsConfiguredEvent: RankifyInstance_RequirementsConfigured!
+  contractAddress: String!
+  contractId: BigInt!
+  contractType: BigInt!
+  have_data: String!
+  have_amount: BigInt!
+  lock_data: String!
+  lock_amount: BigInt!
+  burn_data: String!
+  burn_amount: BigInt!
+  pay_data: String!
+  pay_amount: BigInt!
+  bet_data: String!
+  bet_amount: BigInt!
+}
+
+type RankifyInstance_RequirementsConfigured {
+  id: ID!
+  gameId: BigInt!
+  ethValues_have: BigInt!
+  ethValues_lock: BigInt!
+  ethValues_burn: BigInt!
+  ethValues_pay: BigInt!
+  ethValues_bet: BigInt!
+  contracts: [RequirementsConfigured_Contract!]! @derivedFrom(field: "requirementsConfiguredEvent")
+  blockNumber: BigInt!
+  blockTimestamp: String!
+  srcAddress: String!
+}
+
 type RankifyInstance_VoteSubmitted @entity {
   id: ID!
   gameId: BigInt!

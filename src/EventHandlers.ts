@@ -39,6 +39,7 @@ import {
   RankifyInstance_RankTokenExited,
   RankifyInstance_RegistrationOpen,
   RankifyInstance_ProposingStageEnded,
+  RankifyInstance_RequirementsConfigured,
   RankifyInstance_VotingStageResults,
   RankifyInstance_VoteSubmitted,
   RankifyInstance_gameCreated,
@@ -68,8 +69,10 @@ import {
   GovernorProposalThresholdSet,
   GovernorQuorumNumeratorUpdated,
   DAODistributor_Instantiated_eventArgs,
+  RequirementsConfigured_Contract,
 } from "generated";
 import { BytesLike } from "ethers";
+import { randomUUID } from "crypto";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
   const entity: DAODistributor_Debug = {
@@ -543,6 +546,42 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
   };
 
   context.RankifyInstance_gameCreated.set(entity);
+});
+
+RankifyInstance.RequirementsConfigured.handler(async ({ event, context }) => {
+  const entity: RankifyInstance_RequirementsConfigured = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    gameId: event.params.gameId,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    srcAddress: event.srcAddress,
+    ethValues_have: event.params.config[0][0],
+    ethValues_lock: event.params.config[0][1],
+    ethValues_burn: event.params.config[0][2],
+    ethValues_pay: event.params.config[0][3],
+    ethValues_bet: event.params.config[0][4],
+  };
+  for (const contract of event.params.config[1]) {
+    const cReq: RequirementsConfigured_Contract = {
+      id: randomUUID(),
+      requirementsConfiguredEvent_id: entity.id,
+      contractAddress: contract[0],
+      contractId: contract[1],
+      contractType: contract[2],
+      have_data: contract[3][0][0],
+      have_amount: contract[3][0][1],
+      lock_data: contract[3][1][0],
+      lock_amount: contract[3][1][1],
+      burn_data: contract[3][2][0],
+      burn_amount: contract[3][2][1],
+      pay_data: contract[3][3][0],
+      pay_amount: contract[3][3][1],
+      bet_data: contract[3][4][0],
+      bet_amount: contract[3][4][1],
+    };
+    context.RequirementsConfigured_Contract.set(cReq);
+  }
+  context.RankifyInstance_RequirementsConfigured.set(entity);
 });
 
 RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
