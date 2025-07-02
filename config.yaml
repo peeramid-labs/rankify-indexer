@@ -26,7 +26,7 @@ networks:
     - event: VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId, bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
     - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256 proposingPhaseDuration, uint256 votePhaseDuration)
     - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
-    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
+    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix, uint256[] permutation)
     - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
     - event: RequirementsConfigured
   - name: RankifyToken

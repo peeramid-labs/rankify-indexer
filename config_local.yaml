@@ -41,7 +41,7 @@ networks:
               proposals)
           - event: >-
               VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[]
-              players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
+              players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix, uint256[] permutation)
           - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
           - event: RequirementsConfigured
       - name: RankifyToken

@@ -393,6 +393,7 @@ type RankifyInstance_VotingStageResults @entity {
   votesSorted: [[BigInt!]!]!
   isActive: [Int!]!
   finalizedVotingMatrix: [[BigInt!]!]!
+  permutation: [BigInt!]!
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!

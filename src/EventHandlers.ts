@@ -610,6 +610,7 @@ RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
     votesSorted: event.params.votesSorted,
     isActive: event.params.isActive.map((active) => (active ? 1 : 0)),
     finalizedVotingMatrix: event.params.finalizedVotingMatrix,
+    permutation: event.params.permutation,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,

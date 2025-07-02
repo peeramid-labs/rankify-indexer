@@ -446,6 +446,12 @@
         "internalType": "uint256[][]",
         "name": "finalizedVotingMatrix",
         "type": "uint256[][]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "permutation",
+        "type": "uint256[]"
       }
     ],
     "name": "VotingStageResults",
