@@ -6,6 +6,8 @@ field_selection:
 networks:
 - id: 421614
   start_block: 128682246
+  rpc_config:
+      url: ${RPC_URL_FOR_INDEXER}
   contracts:
   - name: RankifyInstance
     handler: src/EventHandlers.ts
