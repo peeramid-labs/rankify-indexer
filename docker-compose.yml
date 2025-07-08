@@ -1,18 +1,4 @@
 services:
-  envio-postgres:
-    image: postgres:16
-    restart: always
-    ports:
-      - "${ENVIO_PG_PORT:-5433}:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: ${ENVIO_POSTGRES_PASSWORD:-testing}
-      POSTGRES_USER: ${ENVIO_PG_USER:-postgres}
-      POSTGRES_DB: ${ENVIO_PG_DATABASE:-envio-dev}
-    networks:
-      - my-proxy-net
-
   graphql-engine:
     image: hasura/graphql-engine:v2.23.0
     ports:
@@ -22,7 +8,7 @@ services:
       - "envio-postgres"
     restart: always
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${ENVIO_POSTGRES_PASSWORD:-testing}@envio-postgres:5432/envio-dev
+      HASURA_GRAPHQL_DATABASE_URL: ${HASURA_GRAPHQL_DATABASE_URL}
       HASURA_GRAPHQL_ENABLE_CONSOLE: ${HASURA_GRAPHQL_ENABLE_CONSOLE:-true}
       HASURA_GRAPHQL_ENABLED_LOG_TYPES:
         startup, http-log, webhook-log, websocket-log,
@@ -90,9 +76,6 @@ services:
     command: /bin/sh -c "pnpm envio codegen --config config.yaml && pnpm dev --config config.yaml"
     networks:
       - my-proxy-net
-
-volumes:
-  db_data:
 
 networks:
   my-proxy-net:
