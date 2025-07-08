@@ -71,7 +71,6 @@ import {
   DAODistributor_Instantiated_eventArgs,
   RequirementsConfigured_Contract,
 } from "generated";
-import { BytesLike } from "ethers";
 import { randomUUID } from "crypto";
 
 DAODistributor.Debug.handler(async ({ event, context }) => {
