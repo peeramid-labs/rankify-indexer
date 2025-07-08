@@ -46,6 +46,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - /home/ubuntu/rankify-indexer:/app
     ports:
       - "8081:8081"
     depends_on:
@@ -54,8 +57,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.8" # Limit to 80% of 1 CPU (800m)
-          memory: 800M # Conservative limit, can be increased if needed
+          cpus: "0.8"
+          memory: 800M
     restart: always
     environment:
       ENVIO_POSTGRES_PASSWORD: ${ENVIO_POSTGRES_PASSWORD:-testing}
@@ -73,7 +76,6 @@ services:
       LOG_STRATEGY: ${LOG_STRATEGY:-console-pretty}
       MAX_QUEUE_SIZE: 50000
       MAX_BATCH_SIZE: 10000
-      # These variables can be skipped if Hasura is not necessary
       HASURA_GRAPHQL_ENDPOINT: http://graphql-engine:8080/v1/metadata
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET:-testing}
       HASURA_SERVICE_HOST: graphql-engine
