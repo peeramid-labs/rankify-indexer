@@ -49,7 +49,7 @@ services:
       ENVIO_PG_PORT: 5432
       ENVIO_PG_USER: ${ENVIO_PG_USER:-postgres}
       ENVIO_PG_DATABASE: ${ENVIO_PG_DATABASE:-envio-dev}
-      ENVIO_PG_PUBLIC_SCHEMA: ${ENVIO_PG_PUBLIC_SCHEMA:-envio}
+      ENVIO_PG_PUBLIC_SCHEMA: public
       ENVIO_PG_SSL_MODE: true
       CONFIG_FILE: ${CONFIG_FILE:-config.yaml}
       LOG_LEVEL: ${LOG_LEVEL:-trace}
