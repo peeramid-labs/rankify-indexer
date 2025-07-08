@@ -38,7 +38,6 @@ services:
         limits:
           cpus: "0.8"
           memory: 800M
-    restart: always
     environment:
       ENVIO_POSTGRES_PASSWORD: ${ENVIO_POSTGRES_PASSWORD}
       ENVIO_PG_HOST: ${ENVIO_PG_HOST}
