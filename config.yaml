@@ -5,7 +5,7 @@ field_selection:
     - transactionIndex
 networks:
 - id: 421614
-  start_block: 0
+  start_block: 128682246
   contracts:
   - name: RankifyInstance
     handler: src/EventHandlers.ts
