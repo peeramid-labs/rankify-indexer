@@ -2,6 +2,7 @@ name: envio-indexer
 field_selection:
   transaction_fields:
     - transactionIndex
+    - hash
 networks:
   - id: ${CHAIN_ID}
     rpc_config:

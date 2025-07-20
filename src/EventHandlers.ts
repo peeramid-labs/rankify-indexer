@@ -78,6 +78,7 @@ DAODistributor.Debug.handler(async ({ event, context }) => {
     args: event.params.args,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_Debug.set(entity);
@@ -88,6 +89,7 @@ DAODistributor.DefaultAdminDelayChangeCanceled.handler(async ({ event, context }
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DefaultAdminDelayChangeCanceled.set(entity);
@@ -100,6 +102,7 @@ DAODistributor.DefaultAdminDelayChangeScheduled.handler(async ({ event, context 
     effectSchedule: event.params.effectSchedule,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DefaultAdminDelayChangeScheduled.set(entity);
@@ -110,6 +113,7 @@ DAODistributor.DefaultAdminTransferCanceled.handler(async ({ event, context }) =
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DefaultAdminTransferCanceled.set(entity);
@@ -122,6 +126,7 @@ DAODistributor.DefaultAdminTransferScheduled.handler(async ({ event, context }) 
     acceptSchedule: event.params.acceptSchedule,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DefaultAdminTransferScheduled.set(entity);
@@ -135,6 +140,7 @@ DAODistributor.DistributionAdded.handler(async ({ event, context }) => {
     initializer: event.params.initializer,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DistributionAdded.set(entity);
@@ -146,6 +152,7 @@ DAODistributor.DistributionRemoved.handler(async ({ event, context }) => {
     event_id: event.params.id,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_DistributionRemoved.set(entity);
@@ -161,6 +168,7 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
     args: event.params.args,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.DAODistributor_Instantiated.set(instantiatedEntity);
 });
@@ -178,6 +186,7 @@ DAODistributor.InstantiationCostChanged.handler(async ({ event, context }) => {
     cost: event.params.cost,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_InstantiationCostChanged.set(entity);
@@ -191,6 +200,7 @@ DAODistributor.RoleAdminChanged.handler(async ({ event, context }) => {
     newAdminRole: event.params.newAdminRole,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_RoleAdminChanged.set(entity);
@@ -204,6 +214,7 @@ DAODistributor.RoleGranted.handler(async ({ event, context }) => {
     sender: event.params.sender,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_RoleGranted.set(entity);
@@ -217,6 +228,7 @@ DAODistributor.RoleRevoked.handler(async ({ event, context }) => {
     sender: event.params.sender,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_RoleRevoked.set(entity);
@@ -236,6 +248,7 @@ DAODistributor.VersionChanged.handler(async ({ event, context }) => {
     newRequirementData_1: event.params.newRequirementData[1],
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.DAODistributor_VersionChanged.set(entity);
@@ -249,6 +262,7 @@ RankToken.ApprovalForAll.handler(async ({ event, context }) => {
     approved: event.params.approved,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_ApprovalForAll.set(entity);
@@ -260,6 +274,7 @@ RankToken.Initialized.handler(async ({ event, context }) => {
     version: event.params.version,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_Initialized.set(entity);
@@ -271,6 +286,7 @@ RankToken.RankingInstanceUpdated.handler(async ({ event, context }) => {
     newRankingInstance: event.params.newRankingInstance,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_RankingInstanceUpdated.set(entity);
@@ -284,6 +300,7 @@ RankToken.TokensLocked.handler(async ({ event, context }) => {
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_TokensLocked.set(entity);
@@ -297,6 +314,7 @@ RankToken.TokensUnlocked.handler(async ({ event, context }) => {
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_TokensUnlocked.set(entity);
@@ -312,6 +330,7 @@ RankToken.TransferBatch.handler(async ({ event, context }) => {
     values: event.params.values,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_TransferBatch.set(entity);
@@ -327,6 +346,7 @@ RankToken.TransferSingle.handler(async ({ event, context }) => {
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_TransferSingle.set(entity);
@@ -339,6 +359,7 @@ RankToken.URI.handler(async ({ event, context }) => {
     event_id: event.params.id,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankToken_URI.set(entity);
@@ -351,6 +372,7 @@ RankifyInstance.GameClosed.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_GameClosed.set(entity);
@@ -365,6 +387,7 @@ RankifyInstance.GameOver.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_GameOver.set(entity);
@@ -377,6 +400,7 @@ RankifyInstance.GameStarted.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_GameStarted.set(entity);
@@ -389,6 +413,7 @@ RankifyInstance.LastTurn.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_LastTurn.set(entity);
@@ -401,6 +426,7 @@ RankifyInstance.OverTime.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_OverTime.set(entity);
@@ -414,6 +440,7 @@ RankifyInstance.OwnershipTransferred.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_OwnershipTransferred.set(entity);
@@ -431,6 +458,7 @@ RankifyInstance.PlayerJoined.handler(async ({ event, context }) => {
     srcAddress: event.srcAddress,
     transactionIndex: event.transaction.transactionIndex,
     logIndex: event.logIndex,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_PlayerJoined.set(entity);
@@ -444,6 +472,7 @@ RankifyInstance.PlayerLeft.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_PlayerLeft.set(entity);
@@ -460,6 +489,7 @@ RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_ProposalScore.set(entity);
@@ -478,6 +508,7 @@ RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_ProposalSubmitted.set(entity);
@@ -493,6 +524,7 @@ RankifyInstance.RankTokenExited.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_RankTokenExited.set(entity);
@@ -505,6 +537,7 @@ RankifyInstance.RegistrationOpen.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_RegistrationOpen.set(entity);
@@ -523,6 +556,7 @@ RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_VoteSubmitted.set(entity);
@@ -540,6 +574,7 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_gameCreated.set(entity);
@@ -555,6 +590,7 @@ RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_ProposingStageEnded.set(entity);
@@ -574,6 +610,7 @@ RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
 
   context.RankifyInstance_VotingStageResults.set(entity);
@@ -587,6 +624,7 @@ RankifyInstance.StaleGameEnded.handler(async ({ event, context }) => {
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
     srcAddress: event.srcAddress,
+    hash: event.transaction.hash,
   };
   context.RankifyInstance_StaleGameEnded.set(entity);
 });
@@ -599,6 +637,7 @@ RankifyToken.Approval.handler(async ({ event, context }) => {
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_Approval.set(entity);
@@ -612,6 +651,7 @@ RankifyToken.DelegateChanged.handler(async ({ event, context }) => {
     toDelegate: event.params.toDelegate,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_DelegateChanged.set(entity);
@@ -625,6 +665,7 @@ RankifyToken.DelegateVotesChanged.handler(async ({ event, context }) => {
     newVotes: event.params.newVotes,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_DelegateVotesChanged.set(entity);
@@ -635,6 +676,7 @@ RankifyToken.EIP712DomainChanged.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_EIP712DomainChanged.set(entity);
@@ -647,6 +689,7 @@ RankifyToken.OwnershipTransferred.handler(async ({ event, context }) => {
     newOwner: event.params.newOwner,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_OwnershipTransferred.set(entity);
@@ -660,6 +703,7 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.RankifyToken_Transfer.set(entity);
@@ -687,6 +731,7 @@ Governor.ProposalCreated.handler(async ({ event, context }) => {
     queued: false,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
 
   context.GovernorProposal.set(proposal);
@@ -704,6 +749,7 @@ Governor.VoteCast.handler(async ({ event, context }) => {
     reason: event.params.reason,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.GovernorVote.set(vote);
 
@@ -780,6 +826,7 @@ Governor.VotingDelaySet.handler(async ({ event, context }) => {
     newVotingDelay: event.params.newVotingDelay,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.GovernorVotingDelaySet.set(entity);
 });
@@ -792,6 +839,7 @@ Governor.VotingPeriodSet.handler(async ({ event, context }) => {
     newVotingPeriod: event.params.newVotingPeriod,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.GovernorVotingPeriodSet.set(entity);
 });
@@ -804,6 +852,7 @@ Governor.ProposalThresholdSet.handler(async ({ event, context }) => {
     newProposalThreshold: event.params.newProposalThreshold,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.GovernorProposalThresholdSet.set(entity);
 });
@@ -816,6 +865,7 @@ Governor.QuorumNumeratorUpdated.handler(async ({ event, context }) => {
     newQuorumNumerator: event.params.newQuorumNumerator,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    hash: event.transaction.hash,
   };
   context.GovernorQuorumNumeratorUpdated.set(entity);
 });

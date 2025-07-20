@@ -8,12 +8,14 @@ type DAODistributor_Debug @entity {
   args: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DefaultAdminDelayChangeCanceled @entity {
   id: ID!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DefaultAdminDelayChangeScheduled @entity {
@@ -22,12 +24,14 @@ type DAODistributor_DefaultAdminDelayChangeScheduled @entity {
   effectSchedule: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DefaultAdminTransferCanceled @entity {
   id: ID!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DefaultAdminTransferScheduled @entity {
@@ -36,6 +40,7 @@ type DAODistributor_DefaultAdminTransferScheduled @entity {
   acceptSchedule: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DistributionAdded @entity {
@@ -45,6 +50,7 @@ type DAODistributor_DistributionAdded @entity {
   initializer: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_DistributionRemoved @entity {
@@ -52,6 +58,7 @@ type DAODistributor_DistributionRemoved @entity {
   event_id: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_Instantiated @entity {
@@ -71,6 +78,7 @@ type DAODistributor_InstantiationCostChanged @entity {
   cost: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_RoleAdminChanged @entity {
@@ -80,6 +88,7 @@ type DAODistributor_RoleAdminChanged @entity {
   newAdminRole: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_RoleGranted @entity {
@@ -89,6 +98,7 @@ type DAODistributor_RoleGranted @entity {
   sender: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_RoleRevoked @entity {
@@ -98,6 +108,7 @@ type DAODistributor_RoleRevoked @entity {
   sender: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type DAODistributor_VersionChanged @entity {
@@ -113,6 +124,7 @@ type DAODistributor_VersionChanged @entity {
   newRequirementData_1: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type IssuanceCurve_Buy @entity {
@@ -122,6 +134,7 @@ type IssuanceCurve_Buy @entity {
   cost: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_ApprovalForAll @entity {
@@ -131,6 +144,7 @@ type RankToken_ApprovalForAll @entity {
   approved: Boolean!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_Initialized @entity {
@@ -138,6 +152,7 @@ type RankToken_Initialized @entity {
   version: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_RankingInstanceUpdated @entity {
@@ -145,6 +160,7 @@ type RankToken_RankingInstanceUpdated @entity {
   newRankingInstance: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_TokensLocked @entity {
@@ -154,6 +170,7 @@ type RankToken_TokensLocked @entity {
   value: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_TokensUnlocked @entity {
@@ -163,6 +180,7 @@ type RankToken_TokensUnlocked @entity {
   value: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_TransferBatch @entity {
@@ -174,6 +192,7 @@ type RankToken_TransferBatch @entity {
   values: [BigInt!]!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_TransferSingle @entity {
@@ -185,6 +204,7 @@ type RankToken_TransferSingle @entity {
   value: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankToken_URI @entity {
@@ -193,6 +213,7 @@ type RankToken_URI @entity {
   event_id: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyInstance_GameClosed @entity {
@@ -201,6 +222,7 @@ type RankifyInstance_GameClosed @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_GameOver @entity {
@@ -211,6 +233,7 @@ type RankifyInstance_GameOver @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_GameStarted @entity {
@@ -219,6 +242,7 @@ type RankifyInstance_GameStarted @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_LastTurn @entity {
@@ -227,6 +251,7 @@ type RankifyInstance_LastTurn @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_OverTime @entity {
@@ -235,6 +260,7 @@ type RankifyInstance_OverTime @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_OwnershipTransferred @entity {
@@ -244,6 +270,7 @@ type RankifyInstance_OwnershipTransferred @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_PlayerJoined @entity {
@@ -257,6 +284,7 @@ type RankifyInstance_PlayerJoined @entity {
   srcAddress: String!
   transactionIndex: Int!
   logIndex: Int!
+  hash: String!
 }
 
 type RankifyInstance_PlayerLeft @entity {
@@ -266,6 +294,7 @@ type RankifyInstance_PlayerLeft @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_ProposalScore @entity {
@@ -278,6 +307,7 @@ type RankifyInstance_ProposalScore @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_ProposalSubmitted @entity {
@@ -292,6 +322,7 @@ type RankifyInstance_ProposalSubmitted @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_RankTokenExited @entity {
@@ -303,6 +334,7 @@ type RankifyInstance_RankTokenExited @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_RegistrationOpen @entity {
@@ -325,6 +357,7 @@ type RankifyInstance_VoteSubmitted @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_gameCreated @entity {
@@ -338,6 +371,7 @@ type RankifyInstance_gameCreated @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_ProposingStageEnded @entity {
@@ -349,6 +383,7 @@ type RankifyInstance_ProposingStageEnded @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_VotingStageResults @entity {
@@ -364,6 +399,7 @@ type RankifyInstance_VotingStageResults @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type RankifyInstance_StaleGameEnded @entity {
@@ -373,6 +409,7 @@ type RankifyInstance_StaleGameEnded @entity {
   blockNumber: BigInt!
   blockTimestamp: String!
   srcAddress: String!
+  hash: String!
 }
 
 type GovernorProposal @entity {
@@ -396,6 +433,7 @@ type GovernorProposal @entity {
   queued: Boolean!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type GovernorVote @entity {
@@ -408,6 +446,7 @@ type GovernorVote @entity {
   reason: String
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type GovernorVotingDelaySet @entity {
@@ -417,6 +456,7 @@ type GovernorVotingDelaySet @entity {
   newVotingDelay: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type GovernorVotingPeriodSet @entity {
@@ -435,6 +475,7 @@ type GovernorProposalThresholdSet @entity {
   newProposalThreshold: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type GovernorQuorumNumeratorUpdated @entity {
@@ -444,6 +485,7 @@ type GovernorQuorumNumeratorUpdated @entity {
   newQuorumNumerator: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_Approval @entity {
@@ -453,6 +495,7 @@ type RankifyToken_Approval @entity {
   value: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_DelegateChanged @entity {
@@ -462,6 +505,7 @@ type RankifyToken_DelegateChanged @entity {
   toDelegate: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_DelegateVotesChanged @entity {
@@ -471,12 +515,14 @@ type RankifyToken_DelegateVotesChanged @entity {
   newVotes: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_EIP712DomainChanged @entity {
   id: ID!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_OwnershipTransferred @entity {
@@ -485,6 +531,7 @@ type RankifyToken_OwnershipTransferred @entity {
   newOwner: String!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
 
 type RankifyToken_Transfer @entity {
@@ -494,4 +541,5 @@ type RankifyToken_Transfer @entity {
   value: BigInt!
   blockNumber: BigInt!
   blockTimestamp: String!
+  hash: String!
 }
