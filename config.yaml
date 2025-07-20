@@ -3,6 +3,7 @@ name: envio-indexer
 field_selection:
   transaction_fields:
     - transactionIndex
+    - hash
 networks:
 - id: 421614
   start_block: 128682246
