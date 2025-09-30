@@ -22,10 +22,9 @@ COPY ./schema.graphql ./schema.graphql
 COPY ./abi ./abi
 
 RUN pnpm envio codegen --config config.yaml
-RUN pnpm envio local db-migrate up
 
 COPY ./src ./src
 # Or rescript.json etc depending on preferred handler language
 COPY ./tsconfig.json ./tsconfig.json
 
-CMD pnpm envio start --config config.yaml
+CMD pnpm envio local db-migrate up && pnpm envio start --config config.yaml
