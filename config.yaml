@@ -70,7 +70,7 @@ networks:
           - event: RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
           - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
           - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-          - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,128),uint8) newRequirementData)
+          - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)
       - name: Governor
         handler: src/EventHandlers.ts
         events:
