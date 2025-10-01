@@ -1,6 +1,6 @@
 ## Envio Indexer for Peeramid
 
-*Please refer to the [documentation website](https://docs.envio.dev) for a thorough guide on all [Envio](https://envio.dev) indexer features*
+_Please refer to the [documentation website](https://docs.envio.dev) for a thorough guide on all [Envio](https://envio.dev) indexer features_
 
 ## Local Development
 
@@ -47,3 +47,16 @@ Failure to stop the environment can cause port conflicts, database inconsistenci
 - `pnpm build` - Build the project
 
 See `scripts` directory for more utilities and documentation.
+
+## Manual Indexer Updates
+
+```bash
+
+# Pull latest changes
+git fetch && git pull
+
+# Deploy to production
+docker compose -f docker-compose-prod.yml build --no-cache --build-arg RPC_URL="put rpc url here"
+docker compose -f docker-compose-prod.yml up -d
+sudo docker system prune --all --force
+```

@@ -4,79 +4,82 @@ field_selection:
   transaction_fields:
     - transactionIndex
 networks:
-- id: 421614
-  start_block: 128682246
-  contracts:
-  - name: RankifyInstance
-    handler: src/EventHandlers.ts
-    events:
-    - event: GameClosed(uint256 indexed gameId)
-    - event: GameOver(uint256 indexed gameId, address[] players, uint256[] scores)
-    - event: GameStarted(uint256 indexed gameId)
-    - event: LastTurn(uint256 indexed gameId)
-    - event: OverTime(uint256 indexed gameId)
-    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-    - event: PlayerJoined(uint256 indexed gameId, address indexed participant, bytes32 gmCommitment, string voterPubKey)
-    - event: PlayerLeft(uint256 indexed gameId, address indexed player)
-    - event: ProposalScore(uint256 indexed gameId, uint256 indexed turn, string indexed proposalHash, string proposal, uint256 score)
-    - event: ProposalSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed proposer, uint256 commitment, string encryptedProposal, bytes gmSignature, bytes proposerSignature)
-    - event: RankTokenExited(address indexed player, uint256 rankId, uint256 amount, uint256 _toMint)
-    - event: RegistrationOpen(uint256 indexed gameId)
-    - event: VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId, bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
-    - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256 proposingPhaseDuration, uint256 votePhaseDuration)
-    - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
-    - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix)
-    - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
-    # - event: RequirementsConfigured(uint256 indexed gameId, tuple(tuple(uint256 have, uint256 lock, uint256 burn, uint256 pay, uint256 bet) ethValues, tuple(address contractAddress, uint256 contractId, uint8 contractType, tuple(tuple(bytes data, uint256 amount) have, tuple(bytes data, uint256 amount) lock, tuple(bytes data, uint256 amount) burn, tuple(bytes data, uint256 amount) pay, tuple(bytes data, uint256 amount) bet) contractRequirement)[] contracts) config)
-  - name: RankifyToken
-    address:
-    - 0x21C68Aa0be617ebE09138d185BF2ff804131A8da
-    handler: src/EventHandlers.ts
-    events:
-    - event: Approval(address indexed owner, address indexed spender, uint256 value)
-    - event: DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate)
-    - event: DelegateVotesChanged(address indexed delegate, uint256 previousVotes, uint256 newVotes)
-    - event: EIP712DomainChanged()
-    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-    - event: Transfer(address indexed from, address indexed to, uint256 value)
-  - name: RankToken
-    handler: src/EventHandlers.ts
-    events:
-    - event: ApprovalForAll(address indexed account, address indexed operator, bool approved)
-    - event: Initialized(uint64 version)
-    - event: RankingInstanceUpdated(address indexed newRankingInstance)
-    - event: TokensLocked(address indexed account, uint256 indexed id, uint256 value)
-    - event: TokensUnlocked(address indexed account, uint256 indexed id, uint256 value)
-    - event: TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
-    - event: TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
-    - event: URI(string value, uint256 indexed id)
-  - name: DAODistributor
-    address:
-    - 0x54c7cdAEDa35c3990892e3FC1F00163fb7020287
-    handler: src/EventHandlers.ts
-    events:
-    - event: Debug(bytes32 distributorsId, bytes args)
-    - event: DefaultAdminDelayChangeCanceled()
-    - event: DefaultAdminDelayChangeScheduled(uint48 newDelay, uint48 effectSchedule)
-    - event: DefaultAdminTransferCanceled()
-    - event: DefaultAdminTransferScheduled(address indexed newAdmin, uint48 acceptSchedule)
-    - event: DistributionAdded(bytes32 indexed id, address distribution, address indexed initializer)
-    - event: DistributionRemoved(bytes32 indexed id)
-    - event: Instantiated(bytes32 indexed distributionId, uint256 indexed newInstanceId, uint256 indexed version, address[] instances, bytes args)
-    - event: InstantiationCostChanged(bytes32 indexed id, uint256 cost)
-    - event: RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-    - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-    - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-    - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)
-  - name: Governor
-    handler: src/EventHandlers.ts
-    events:
-      - event: ProposalCreated(uint256 proposalId, address proposer, address[] targets, uint256[] values, string[] signatures, bytes[] calldatas, uint256 voteStart, uint256 voteEnd, string description)
-      - event: VoteCast(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason)
-      - event: ProposalCanceled(uint256 proposalId)
-      - event: ProposalQueued(uint256 proposalId, uint256 eta)
-      - event: ProposalExecuted(uint256 proposalId)
-      - event: VotingDelaySet(uint256 oldVotingDelay, uint256 newVotingDelay)
-      - event: VotingPeriodSet(uint256 oldVotingPeriod, uint256 newVotingPeriod)
-      - event: ProposalThresholdSet(uint256 oldProposalThreshold, uint256 newProposalThreshold)
-      - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)
+  - id: 421614
+    start_block: 128682246
+    rpc_config:
+      url: ${RPC_URL}
+    contracts:
+      - name: RankifyInstance
+        handler: src/EventHandlers.ts
+        abi_file_path: ./abi/RankifyInstance.json
+        events:
+          - event: GameClosed(uint256 indexed gameId)
+          - event: GameOver(uint256 indexed gameId, address[] players, uint256[] scores)
+          - event: GameStarted(uint256 indexed gameId)
+          - event: LastTurn(uint256 indexed gameId)
+          - event: OverTime(uint256 indexed gameId)
+          - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+          - event: PlayerJoined(uint256 indexed gameId, address indexed participant, bytes32 gmCommitment, string voterPubKey)
+          - event: PlayerLeft(uint256 indexed gameId, address indexed player)
+          - event: ProposalScore(uint256 indexed gameId, uint256 indexed turn, string indexed proposalHash, string proposal, uint256 score)
+          - event: ProposalSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed proposer, uint256 commitment, string encryptedProposal, bytes gmSignature, bytes proposerSignature)
+          - event: RankTokenExited(address indexed player, uint256 rankId, uint256 amount, uint256 _toMint)
+          - event: RegistrationOpen(uint256 indexed gameId)
+          - event: VoteSubmitted(uint256 indexed gameId, uint256 indexed turn, address indexed player, string sealedBallotId, bytes gmSignature, bytes voterSignature, bytes32 ballotHash)
+          - event: gameCreated(uint256 gameId, address indexed gm, address indexed creator, uint256 indexed rank, uint256 proposingPhaseDuration, uint256 votePhaseDuration)
+          - event: ProposingStageEnded(uint256 indexed gameId, uint256 indexed roundNumber, uint256 numProposals, string[] proposals)
+          - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix, uint256[] permutation)
+          - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
+          - event: RequirementsConfigured
+      - name: RankifyToken
+        address:
+          - 0x21C68Aa0be617ebE09138d185BF2ff804131A8da
+        handler: src/EventHandlers.ts
+        events:
+          - event: Approval(address indexed owner, address indexed spender, uint256 value)
+          - event: DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate)
+          - event: DelegateVotesChanged(address indexed delegate, uint256 previousVotes, uint256 newVotes)
+          - event: EIP712DomainChanged()
+          - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+          - event: Transfer(address indexed from, address indexed to, uint256 value)
+      - name: RankToken
+        handler: src/EventHandlers.ts
+        events:
+          - event: ApprovalForAll(address indexed account, address indexed operator, bool approved)
+          - event: Initialized(uint64 version)
+          - event: RankingInstanceUpdated(address indexed newRankingInstance)
+          - event: TokensLocked(address indexed account, uint256 indexed id, uint256 value)
+          - event: TokensUnlocked(address indexed account, uint256 indexed id, uint256 value)
+          - event: TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
+          - event: TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
+          - event: URI(string value, uint256 indexed id)
+      - name: DAODistributor
+        address:
+          - 0x54c7cdAEDa35c3990892e3FC1F00163fb7020287
+        handler: src/EventHandlers.ts
+        events:
+          - event: Debug(bytes32 distributorsId, bytes args)
+          - event: DefaultAdminDelayChangeCanceled()
+          - event: DefaultAdminDelayChangeScheduled(uint48 newDelay, uint48 effectSchedule)
+          - event: DefaultAdminTransferCanceled()
+          - event: DefaultAdminTransferScheduled(address indexed newAdmin, uint48 acceptSchedule)
+          - event: DistributionAdded(bytes32 indexed id, address distribution, address indexed initializer)
+          - event: DistributionRemoved(bytes32 indexed id)
+          - event: Instantiated(bytes32 indexed distributionId, uint256 indexed newInstanceId, uint256 indexed version, address[] instances, bytes args)
+          - event: InstantiationCostChanged(bytes32 indexed id, uint256 cost)
+          - event: RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
+          - event: RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
+          - event: RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
+          - event: VersionChanged(bytes32 indexed distributionId, ((uint64,uint64,uint128),uint8) indexed newRequirement, ((uint64,uint64,uint128),uint8) newRequirementData)
+      - name: Governor
+        handler: src/EventHandlers.ts
+        events:
+          - event: ProposalCreated(uint256 proposalId, address proposer, address[] targets, uint256[] values, string[] signatures, bytes[] calldatas, uint256 voteStart, uint256 voteEnd, string description)
+          - event: VoteCast(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason)
+          - event: ProposalCanceled(uint256 proposalId)
+          - event: ProposalQueued(uint256 proposalId, uint256 eta)
+          - event: ProposalExecuted(uint256 proposalId)
+          - event: VotingDelaySet(uint256 oldVotingDelay, uint256 newVotingDelay)
+          - event: VotingPeriodSet(uint256 oldVotingPeriod, uint256 newVotingPeriod)
+          - event: ProposalThresholdSet(uint256 oldProposalThreshold, uint256 newProposalThreshold)
+          - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)

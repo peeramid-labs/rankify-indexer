@@ -1,12 +1,30 @@
-FROM node:22.14-alpine
+FROM node:24.3.0-slim
 
-RUN apk add --no-cache python3 make g++ gcc
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN npm install -g pnpm@9.7.1
 
-RUN npm install -g pnpm
+WORKDIR /envio-indexer
 
-ARG ENVIO_VERSION
+# Build arguments for required environment variables
+ARG RPC_URL
 
-RUN npm install --global envio@${ENVIO_VERSION}
+# Set them as environment variables
+ENV RPC_URL=$RPC_URL
 
-ARG COMMIT_HASH_ARG
-ENV COMMIT_HASH=${COMMIT_HASH_ARG}
+COPY ./package.json ./package.json
+COPY ./pnpm-lock.yaml ./pnpm-lock.yaml
+
+RUN pnpm install --frozen-lockfile
+
+COPY ./config.yaml ./config.yaml
+COPY ./schema.graphql ./schema.graphql
+COPY ./abi ./abi
+
+RUN pnpm envio codegen --config config.yaml
+
+COPY ./src ./src
+# Or rescript.json etc depending on preferred handler language
+COPY ./tsconfig.json ./tsconfig.json
+
+CMD pnpm envio local db-migrate up && pnpm envio start --config config.yaml
