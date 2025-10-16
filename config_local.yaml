@@ -2,10 +2,11 @@ name: envio-indexer
 field_selection:
   transaction_fields:
     - transactionIndex
+    - hash
 networks:
-  - id: ${CHAIN_ID}
+  - id: ${LOCALHOST_CHAIN_ID}
     rpc_config:
-      url: ${RPC_URL}
+      url: ${LOCALHOST_RPC_URL}
     start_block: 0
     contracts:
       - name: RankifyInstance
@@ -41,7 +42,8 @@ networks:
               proposals)
           - event: >-
               VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[]
-              players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix, uint256[] permutation)
+              players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix,
+              uint256[] permutation)
           - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
           - event: RequirementsConfigured
       - name: RankifyToken
@@ -106,3 +108,26 @@ networks:
           - event: VotingPeriodSet(uint256 oldVotingPeriod, uint256 newVotingPeriod)
           - event: ProposalThresholdSet(uint256 oldProposalThreshold, uint256 newProposalThreshold)
           - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)
+      - name: Multipass
+        handler: src/MultipassHandlers.ts
+        abi_file_path: ./abi/Multipass.json
+        address:
+          - ${MULTIPASS_ADDRESS}
+        events:
+          - event: DomainActivated(bytes32 indexed domainName)
+          - event: DomainDeactivated(bytes32 indexed domainName)
+          - event: DomainFeeChanged(bytes32 indexed domainName, uint256 indexed newFee)
+          - event: EIP712DomainChanged()
+          - event: Initialized(uint64 version)
+          - event: >-
+              InitializedDomain(address indexed registrar, uint256 indexed fee, bytes32 indexed domainName, uint256
+              renewalFee, uint256 referrerReward, uint256 referralDiscount)
+          - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+          - event: ReferralProgramChanged(bytes32 indexed domainName, uint256 reward, uint256 discount)
+          - event: Referred
+          - event: Registered
+          - event: RegistrarChanged(bytes32 indexed domainName, address indexed registrar)
+          - event: RenewalFeeChanged(bytes32 indexed domainName, uint256 indexed newFee)
+          - event: Renewed
+          - event: fundsWithdawn(uint256 indexed amount, address indexed account)
+          - event: nameDeleted(bytes32 indexed domainName, address indexed wallet, bytes32 indexed id, bytes32 name)
