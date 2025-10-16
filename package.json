@@ -8,7 +8,7 @@
     "mocha": "ts-mocha test/**/*.ts",
     "codegen": "envio codegen",
     "dev": "envio dev",
-    "dev:local": "export RPC_URL=http://localhost:8545 && export CHAIN_ID=31337 && node scripts/start-local.js",
+    "dev:local": ". .env.local && node scripts/start-local.js",
     "dev:clean": "pnpm envio stop && rm -rf generated && rm -rf .envio",
     "test": "pnpm mocha",
     "start": "ts-node generated/src/Index.bs.js"
