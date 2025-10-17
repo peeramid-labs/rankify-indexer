@@ -718,6 +718,7 @@ type UBIClaimed @entity {
     id: ID!
     user: String!
     amount: BigInt!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -728,6 +729,7 @@ type UBIProposedTime @entity {
     id: ID!
     proposalHash: String!
     newTimesProposed: BigInt!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -740,6 +742,7 @@ type UBIVotingByAddress @entity {
     day: BigInt!
     proposal: String!
     amount: BigInt!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -752,6 +755,7 @@ type UBIProposalScoreUpdatedByAddress @entity {
     day: BigInt!
     proposer: String!
     proposal: String!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -764,6 +768,7 @@ type UBIProposalScoreUpdatedByProposal @entity {
     day: BigInt!
     proposal: String!
     proposer: String!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -775,6 +780,7 @@ type UBIProposalLifetimeScore @entity {
     lifeTimeScore: BigInt!
     proposedTimes: BigInt!
     repostedTimes: BigInt!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -788,6 +794,7 @@ type UBIProposingByAddress @entity {
     proposal: String!
     proposalText: String!
     scoreWhenProposed: BigInt!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -801,6 +808,7 @@ type UBIRepostByReposter @entity {
     proposal: String!
     reposter: String!
     proposalText: String!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!
@@ -814,6 +822,7 @@ type UBIRepostByProposer @entity {
     proposal: String!
     proposer: String!
     proposalText: String!
+    instanceAddress: String!
     blockNumber: BigInt!
     blockTimestamp: String!
     chainId: Int!

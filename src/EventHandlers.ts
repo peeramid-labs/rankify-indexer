@@ -1054,6 +1054,7 @@ RankifyInstance.Claimed.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     user: event.params.user,
     amount: event.params.amount,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1069,6 +1070,7 @@ RankifyInstance.ProposedTime.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     proposalHash: event.params.proposalHash,
     newTimesProposed: event.params.newTimesProposed,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1086,6 +1088,7 @@ RankifyInstance.VotingByAddress.handler(async ({ event, context }) => {
     day: event.params.day,
     proposal: event.params.proposal,
     amount: event.params.amount,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1104,6 +1107,7 @@ RankifyInstance.ProposalScoreUpdatedByAddress.handler(
       day: event.params.day,
       proposer: event.params.proposer,
       proposal: event.params.proposal,
+      instanceAddress: event.srcAddress,
       blockNumber: BigInt(event.block.number),
       blockTimestamp: new Date(
         Number(event.block.timestamp) * 1000,
@@ -1123,6 +1127,7 @@ RankifyInstance.ProposalScoreUpdatedByProposal.handler(
       day: event.params.day,
       proposal: event.params.proposal,
       proposer: event.params.proposer,
+      instanceAddress: event.srcAddress,
       blockNumber: BigInt(event.block.number),
       blockTimestamp: new Date(
         Number(event.block.timestamp) * 1000,
@@ -1140,6 +1145,7 @@ RankifyInstance.ProposalLifetimeScore.handler(async ({ event, context }) => {
     lifeTimeScore: event.params.lifeTimeScore,
     proposedTimes: event.params.proposedTimes,
     repostedTimes: event.params.repostedTimes,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1158,6 +1164,7 @@ RankifyInstance.ProposingByAddress.handler(async ({ event, context }) => {
     proposal: event.params.proposal,
     proposalText: event.params.proposalText,
     scoreWhenProposed: event.params.scoreWhenProposed,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1176,6 +1183,7 @@ RankifyInstance.RepostByReposter.handler(async ({ event, context }) => {
     proposal: event.params.proposal,
     reposter: event.params.reposter,
     proposalText: event.params.proposalText,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
@@ -1194,6 +1202,7 @@ RankifyInstance.RepostByProposer.handler(async ({ event, context }) => {
     proposal: event.params.proposal,
     proposer: event.params.proposer,
     proposalText: event.params.proposalText,
+    instanceAddress: event.srcAddress,
     blockNumber: BigInt(event.block.number),
     blockTimestamp: new Date(
       Number(event.block.timestamp) * 1000,
