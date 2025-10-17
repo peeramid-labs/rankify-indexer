@@ -3,6 +3,7 @@ name: envio-indexer
 field_selection:
   transaction_fields:
     - transactionIndex
+    - hash
 networks:
   - id: 421614
     start_block: 128682246
@@ -85,6 +86,7 @@ networks:
           - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)
       - name: Multipass
         handler: src/MultipassHandlers.ts
+        abi_file_path: ./abi/Multipass.json
         address:
           - 0x3151D65Ad9754eA6A286B7570066FC0d7b9b9856
         events:

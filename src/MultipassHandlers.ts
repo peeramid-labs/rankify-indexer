@@ -165,7 +165,7 @@ Multipass.Renewed.handler(async ({ event, context }) => {
     chainId: event.chainId,
     hash: event.transaction.hash,
   };
-  context.MultipassRenewalFeeChanged.set(entity);
+  context.MultipassRenewed.set(entity);
 });
 
 Multipass.FundsWithdawn.handler(async ({ event, context }) => {
