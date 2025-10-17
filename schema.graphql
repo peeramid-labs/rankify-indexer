@@ -713,3 +713,109 @@ type MultipassNameDeleted @entity {
     userId: String!
     name: String!
 }
+
+type UBIClaimed @entity {
+    id: ID!
+    user: String!
+    amount: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposedTime @entity {
+    id: ID!
+    proposalHash: String!
+    newTimesProposed: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIVotingByAddress @entity {
+    id: ID!
+    participant: String!
+    day: BigInt!
+    proposal: String!
+    amount: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalScoreUpdatedByAddress @entity {
+    id: ID!
+    dailyScore: BigInt!
+    day: BigInt!
+    proposer: String!
+    proposal: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalScoreUpdatedByProposal @entity {
+    id: ID!
+    dailyScore: BigInt!
+    day: BigInt!
+    proposal: String!
+    proposer: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalLifetimeScore @entity {
+    id: ID!
+    lifeTimeScore: BigInt!
+    proposedTimes: BigInt!
+    repostedTimes: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposingByAddress @entity {
+    id: ID!
+    proposer: String!
+    day: BigInt!
+    proposal: String!
+    proposalText: String!
+    scoreWhenProposed: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIRepostByReposter @entity {
+    id: ID!
+    proposer: String!
+    day: BigInt!
+    proposal: String!
+    reposter: String!
+    proposalText: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIRepostByProposer @entity {
+    id: ID!
+    reposter: String!
+    day: BigInt!
+    proposal: String!
+    proposer: String!
+    proposalText: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}

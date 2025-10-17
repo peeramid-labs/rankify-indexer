@@ -31,6 +31,15 @@ networks:
           - event: VotingStageResults(uint256 indexed gameId, uint256 indexed roundNumber, address indexed winner, address[] players, uint256[] scores, uint256[][] votesSorted, bool[] isActive, uint256[][] finalizedVotingMatrix, uint256[] permutation)
           - event: StaleGameEnded(uint256 indexed gameId, address indexed winner)
           - event: RequirementsConfigured
+          - event: Claimed(address indexed user, uint256 amount)
+          - event: ProposedTime(bytes32 proposalHash, uint256 newTimesProposed)
+          - event: VotingByAddress(address indexed participant, uint256 indexed day, bytes32 indexed proposal, uint256 amount)
+          - event: ProposalScoreUpdatedByAddress(uint256 indexed dailyScore, uint256 indexed day, address indexed proposer, bytes32 proposal)
+          - event: ProposalScoreUpdatedByProposal(uint256 indexed dailyScore, uint256 indexed day, bytes32 indexed proposal, address proposer)
+          - event: ProposalLifetimeScore(uint256 indexed lifeTimeScore, uint256 indexed proposedTimes, uint256 indexed repostedTimes)
+          - event: ProposingByAddress(address indexed proposer, uint256 indexed day, bytes32 indexed proposal, string proposalText, uint256 scoreWhenProposed)
+          - event: RepostByReposter(address indexed proposer, uint256 indexed day, bytes32 indexed proposal, address reposter, string proposalText)
+          - event: RepostByProposer(address indexed reposter, uint256 indexed day, bytes32 indexed proposal, address proposer, string proposalText)
       - name: RankifyToken
         address:
           - 0x21C68Aa0be617ebE09138d185BF2ff804131A8da
@@ -85,6 +94,7 @@ networks:
           - event: QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator)
       - name: Multipass
         handler: src/MultipassHandlers.ts
+        abi_file_path: ./abi/Multipass.json
         address:
           - 0x3151D65Ad9754eA6A286B7570066FC0d7b9b9856
         events:
