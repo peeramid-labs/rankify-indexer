@@ -3,579 +3,828 @@ scalar Bytes
 scalar ID
 
 type DAODistributor_Debug @entity {
-  id: ID!
-  distributorsId: String!
-  args: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    distributorsId: String!
+    args: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DefaultAdminDelayChangeCanceled @entity {
-  id: ID!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DefaultAdminDelayChangeScheduled @entity {
-  id: ID!
-  newDelay: BigInt!
-  effectSchedule: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    newDelay: BigInt!
+    effectSchedule: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DefaultAdminTransferCanceled @entity {
-  id: ID!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DefaultAdminTransferScheduled @entity {
-  id: ID!
-  newAdmin: String!
-  acceptSchedule: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    newAdmin: String!
+    acceptSchedule: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DistributionAdded @entity {
-  id: ID!
-  event_id: String!
-  distribution: String!
-  initializer: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    event_id: String!
+    distribution: String!
+    initializer: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_DistributionRemoved @entity {
-  id: ID!
-  event_id: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    event_id: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_Instantiated @entity {
-  id: ID!
-  distributionId: String!
-  newInstanceId: BigInt!
-  version: BigInt!
-  instances: [String!]!
-  args: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    distributionId: String!
+    newInstanceId: BigInt!
+    version: BigInt!
+    instances: [String!]!
+    args: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_InstantiationCostChanged @entity {
-  id: ID!
-  event_id: String!
-  cost: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    event_id: String!
+    cost: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_RoleAdminChanged @entity {
-  id: ID!
-  role: String!
-  previousAdminRole: String!
-  newAdminRole: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    role: String!
+    previousAdminRole: String!
+    newAdminRole: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_RoleGranted @entity {
-  id: ID!
-  role: String!
-  account: String!
-  sender: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    role: String!
+    account: String!
+    sender: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_RoleRevoked @entity {
-  id: ID!
-  role: String!
-  account: String!
-  sender: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    role: String!
+    account: String!
+    sender: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type DAODistributor_VersionChanged @entity {
-  id: ID!
-  distributionId: String!
-  newRequirement_0_0: BigInt!
-  newRequirement_0_1: BigInt!
-  newRequirement_0_2: BigInt!
-  newRequirement_1: BigInt!
-  newRequirementData_0_0: BigInt!
-  newRequirementData_0_1: BigInt!
-  newRequirementData_0_2: BigInt!
-  newRequirementData_1: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    distributionId: String!
+    newRequirement_0_0: BigInt!
+    newRequirement_0_1: BigInt!
+    newRequirement_0_2: BigInt!
+    newRequirement_1: BigInt!
+    newRequirementData_0_0: BigInt!
+    newRequirementData_0_1: BigInt!
+    newRequirementData_0_2: BigInt!
+    newRequirementData_1: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type IssuanceCurve_Buy @entity {
-  id: ID!
-  buyer: String!
-  amount: BigInt!
-  cost: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    buyer: String!
+    amount: BigInt!
+    cost: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_ApprovalForAll @entity {
-  id: ID!
-  account: String!
-  operator: String!
-  approved: Boolean!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    account: String!
+    operator: String!
+    approved: Boolean!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_Initialized @entity {
-  id: ID!
-  version: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    version: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_RankingInstanceUpdated @entity {
-  id: ID!
-  newRankingInstance: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    newRankingInstance: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_TokensLocked @entity {
-  id: ID!
-  account: String!
-  event_id: BigInt!
-  value: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    account: String!
+    event_id: BigInt!
+    value: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_TokensUnlocked @entity {
-  id: ID!
-  account: String!
-  event_id: BigInt!
-  value: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    account: String!
+    event_id: BigInt!
+    value: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_TransferBatch @entity {
-  id: ID!
-  operator: String!
-  from: String!
-  to: String!
-  ids: [BigInt!]!
-  values: [BigInt!]!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    operator: String!
+    from: String!
+    to: String!
+    ids: [BigInt!]!
+    values: [BigInt!]!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_TransferSingle @entity {
-  id: ID!
-  operator: String!
-  from: String!
-  to: String!
-  event_id: BigInt!
-  value: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    operator: String!
+    from: String!
+    to: String!
+    event_id: BigInt!
+    value: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankToken_URI @entity {
-  id: ID!
-  value: String!
-  event_id: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    value: String!
+    event_id: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyInstance_GameClosed @entity {
-  id: ID!
-  gameId: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_GameOver @entity {
-  id: ID!
-  gameId: BigInt!
-  players: [String!]!
-  scores: [BigInt!]!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    players: [String!]!
+    scores: [BigInt!]!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_GameStarted @entity {
-  id: ID!
-  gameId: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_LastTurn @entity {
-  id: ID!
-  gameId: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_OverTime @entity {
-  id: ID!
-  gameId: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_OwnershipTransferred @entity {
-  id: ID!
-  previousOwner: String!
-  newOwner: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    previousOwner: String!
+    newOwner: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_PlayerJoined @entity {
-  id: ID!
-  gameId: BigInt!
-  participant: String!
-  gmCommitment: String!
-  voterPubKey: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
-  transactionIndex: Int!
-  logIndex: Int!
+    id: ID!
+    gameId: BigInt!
+    participant: String!
+    gmCommitment: String!
+    voterPubKey: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
+    transactionIndex: Int!
+    logIndex: Int!
 }
 
 type RankifyInstance_PlayerLeft @entity {
-  id: ID!
-  gameId: BigInt!
-  player: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    player: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_ProposalScore @entity {
-  id: ID!
-  gameId: BigInt!
-  roundNumber: BigInt!
-  proposalHash: String!
-  proposal: String!
-  score: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    roundNumber: BigInt!
+    proposalHash: String!
+    proposal: String!
+    score: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_ProposalSubmitted @entity {
-  id: ID!
-  gameId: BigInt!
-  roundNumber: BigInt!
-  proposer: String!
-  commitment: BigInt!
-  encryptedProposal: String!
-  gmSignature: String!
-  proposerSignature: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    roundNumber: BigInt!
+    proposer: String!
+    commitment: BigInt!
+    encryptedProposal: String!
+    gmSignature: String!
+    proposerSignature: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_RankTokenExited @entity {
-  id: ID!
-  player: String!
-  rankId: BigInt!
-  amount: BigInt!
-  _toMint: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    player: String!
+    rankId: BigInt!
+    amount: BigInt!
+    _toMint: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_RegistrationOpen @entity {
-  id: ID!
-  gameId: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RequirementsConfigured_Contract {
-  id: ID!
-  requirementsConfiguredEvent: RankifyInstance_RequirementsConfigured!
-  contractAddress: String!
-  contractId: BigInt!
-  contractType: BigInt!
-  have_data: String!
-  have_amount: BigInt!
-  lock_data: String!
-  lock_amount: BigInt!
-  burn_data: String!
-  burn_amount: BigInt!
-  pay_data: String!
-  pay_amount: BigInt!
-  bet_data: String!
-  bet_amount: BigInt!
+    id: ID!
+    requirementsConfiguredEvent: RankifyInstance_RequirementsConfigured!
+    contractAddress: String!
+    contractId: BigInt!
+    contractType: BigInt!
+    have_data: String!
+    have_amount: BigInt!
+    lock_data: String!
+    lock_amount: BigInt!
+    burn_data: String!
+    burn_amount: BigInt!
+    pay_data: String!
+    pay_amount: BigInt!
+    bet_data: String!
+    bet_amount: BigInt!
 }
 
 type RankifyInstance_RequirementsConfigured {
-  id: ID!
-  gameId: BigInt!
-  ethValues_have: BigInt!
-  ethValues_lock: BigInt!
-  ethValues_burn: BigInt!
-  ethValues_pay: BigInt!
-  ethValues_bet: BigInt!
-  contracts: [RequirementsConfigured_Contract!]! @derivedFrom(field: "requirementsConfiguredEvent")
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    ethValues_have: BigInt!
+    ethValues_lock: BigInt!
+    ethValues_burn: BigInt!
+    ethValues_pay: BigInt!
+    ethValues_bet: BigInt!
+    contracts: [RequirementsConfigured_Contract!]!
+        @derivedFrom(field: "requirementsConfiguredEvent")
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    srcAddress: String!
 }
 
 type RankifyInstance_VoteSubmitted @entity {
-  id: ID!
-  gameId: BigInt!
-  roundNumber: BigInt!
-  player: String!
-  sealedBallotId: String!
-  gmSignature: String!
-  voterSignature: String!
-  ballotHash: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    roundNumber: BigInt!
+    player: String!
+    sealedBallotId: String!
+    gmSignature: String!
+    voterSignature: String!
+    ballotHash: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_gameCreated @entity {
-  id: ID!
-  gameId: BigInt!
-  gm: String!
-  creator: String!
-  rank: BigInt!
-  proposingPhaseDuration: BigInt!
-  votePhaseDuration: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    gm: String!
+    creator: String!
+    rank: BigInt!
+    proposingPhaseDuration: BigInt!
+    votePhaseDuration: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_ProposingStageEnded @entity {
-  id: ID!
-  gameId: BigInt!
-  roundNumber: BigInt!
-  numProposals: BigInt!
-  proposals: [String!]!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    roundNumber: BigInt!
+    numProposals: BigInt!
+    proposals: [String!]!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_VotingStageResults @entity {
-  id: ID!
-  gameId: BigInt!
-  roundNumber: BigInt!
-  winner: String!
-  players: [String!]!
-  scores: [BigInt!]!
-  votesSorted: [[BigInt!]!]!
-  isActive: [Int!]!
-  finalizedVotingMatrix: [[BigInt!]!]!
-  permutation: [BigInt!]!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    roundNumber: BigInt!
+    winner: String!
+    players: [String!]!
+    scores: [BigInt!]!
+    votesSorted: [[BigInt!]!]!
+    isActive: [Int!]!
+    finalizedVotingMatrix: [[BigInt!]!]!
+    permutation: [BigInt!]!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type RankifyInstance_StaleGameEnded @entity {
-  id: ID!
-  gameId: BigInt!
-  winner: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
-  srcAddress: String!
+    id: ID!
+    gameId: BigInt!
+    winner: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    srcAddress: String!
 }
 
 type GovernorProposal @entity {
-  id: ID! # proposalId
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  proposer: String! # Address of the proposer
-  targets: [String!]!
-  values: [BigInt!]!
-  signatures: [String!]! # Function signatures
-  calldatas: [Bytes!]!
-  voteStart: BigInt! # Block number
-  voteEnd: BigInt! # Block number
-  description: String!
-  state: String! # e.g., Pending, Active, Canceled, Defeated, Succeeded, Queued, Expired, Executed
-  eta: BigInt # Execution timestamp, if queued
-  forVotes: BigInt!
-  againstVotes: BigInt!
-  abstainVotes: BigInt!
-  canceled: Boolean!
-  executed: Boolean!
-  queued: Boolean!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID! # proposalId
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    proposer: String! # Address of the proposer
+    targets: [String!]!
+    values: [BigInt!]!
+    signatures: [String!]! # Function signatures
+    calldatas: [Bytes!]!
+    voteStart: BigInt! # Block number
+    voteEnd: BigInt! # Block number
+    description: String!
+    state: String! # e.g., Pending, Active, Canceled, Defeated, Succeeded, Queued, Expired, Executed
+    eta: BigInt # Execution timestamp, if queued
+    forVotes: BigInt!
+    againstVotes: BigInt!
+    abstainVotes: BigInt!
+    canceled: Boolean!
+    executed: Boolean!
+    queued: Boolean!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type GovernorVote @entity {
-  id: ID! # Combination of voter address and proposalId
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  voter: String! # Address of the voter
-  proposal: GovernorProposal! # Link to the proposal entity by its ID (proposalId)
-  support: Int! # 0: Against, 1: For, 2: Abstain
-  weight: BigInt!
-  reason: String
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID! # Combination of voter address and proposalId
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    voter: String! # Address of the voter
+    proposal: GovernorProposal! # Link to the proposal entity by its ID (proposalId)
+    support: Int! # 0: Against, 1: For, 2: Abstain
+    weight: BigInt!
+    reason: String
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type GovernorVotingDelaySet @entity {
-  id: ID! # transaction hash + log index
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  oldVotingDelay: BigInt!
-  newVotingDelay: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID! # transaction hash + log index
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    oldVotingDelay: BigInt!
+    newVotingDelay: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type GovernorVotingPeriodSet @entity {
-  id: ID!
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  oldVotingPeriod: BigInt!
-  newVotingPeriod: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    oldVotingPeriod: BigInt!
+    newVotingPeriod: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type GovernorProposalThresholdSet @entity {
-  id: ID!
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  oldProposalThreshold: BigInt!
-  newProposalThreshold: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    oldProposalThreshold: BigInt!
+    newProposalThreshold: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type GovernorQuorumNumeratorUpdated @entity {
-  id: ID!
-  governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
-  oldQuorumNumerator: BigInt!
-  newQuorumNumerator: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    governorAddress: String! # MODIFIED: Address of the Governor contract, from event.srcAddress
+    oldQuorumNumerator: BigInt!
+    newQuorumNumerator: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_Approval @entity {
-  id: ID!
-  owner: String!
-  spender: String!
-  value: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    owner: String!
+    spender: String!
+    value: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_DelegateChanged @entity {
-  id: ID!
-  delegator: String!
-  fromDelegate: String!
-  toDelegate: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    delegator: String!
+    fromDelegate: String!
+    toDelegate: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_DelegateVotesChanged @entity {
-  id: ID!
-  delegate: String!
-  previousVotes: BigInt!
-  newVotes: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    delegate: String!
+    previousVotes: BigInt!
+    newVotes: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_EIP712DomainChanged @entity {
-  id: ID!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_OwnershipTransferred @entity {
-  id: ID!
-  previousOwner: String!
-  newOwner: String!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    previousOwner: String!
+    newOwner: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
 }
 
 type RankifyToken_Transfer @entity {
-  id: ID!
-  from: String!
-  to: String!
-  value: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: String!
-  chainId: Int!
+    id: ID!
+    from: String!
+    to: String!
+    value: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+}
+
+type MultipassDomainActivated @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type MultipassDomainDeactivated @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type MultipassDomainFeeChanged @entity {
+    id: ID!
+    domainName: String!
+    newFee: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type MultipassInitializedDomain @entity {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    registrar: String!
+    fee: BigInt!
+    domainName: String!
+    renewalFee: BigInt!
+    referrerReward: BigInt!
+    referralDiscount: BigInt!
+}
+
+type MultipassOwnershipTransferred @entity {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    previousOwner: String!
+    newOwner: String!
+}
+
+type MultipassReferralProgramChanged @entity {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    domainName: String!
+    reward: BigInt!
+    discount: BigInt!
+}
+
+type MultipassRegistered @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    wallet: String!
+    userId: String!
+    nonce: BigInt!
+    validUntil: BigInt!
+    name: String!
+}
+
+type MultipassRegistrarChanged @entity {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    domainName: String!
+    registrar: String!
+}
+
+type MultipassRenewalFeeChanged @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    newFee: BigInt!
+}
+
+type MultipassRenewed @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    wallet: String!
+    userId: String!
+    nonce: BigInt!
+    validUntil: BigInt!
+    name: String!
+}
+
+type MultipassfundsWithdawn @entity {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    account: String!
+    amount: BigInt!
+}
+
+type MultipassNameDeleted @entity {
+    id: ID!
+    domainName: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+    wallet: String!
+    userId: String!
+    name: String!
+}
+
+type UBIClaimed @entity {
+    id: ID!
+    user: String!
+    amount: BigInt!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposedTime @entity {
+    id: ID!
+    proposalHash: String!
+    newTimesProposed: BigInt!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIVotingByAddress @entity {
+    id: ID!
+    participant: String!
+    day: BigInt!
+    proposal: String!
+    amount: BigInt!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalScoreUpdatedByAddress @entity {
+    id: ID!
+    dailyScore: BigInt!
+    day: BigInt!
+    proposer: String!
+    proposal: String!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalScoreUpdatedByProposal @entity {
+    id: ID!
+    dailyScore: BigInt!
+    day: BigInt!
+    proposal: String!
+    proposer: String!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposalLifetimeScore @entity {
+    id: ID!
+    lifeTimeScore: BigInt!
+    proposedTimes: BigInt!
+    repostedTimes: BigInt!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIProposingByAddress @entity {
+    id: ID!
+    proposer: String!
+    day: BigInt!
+    proposal: String!
+    proposalText: String!
+    scoreWhenProposed: BigInt!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIRepostByReposter @entity {
+    id: ID!
+    proposer: String!
+    day: BigInt!
+    proposal: String!
+    reposter: String!
+    proposalText: String!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
+}
+
+type UBIRepostByProposer @entity {
+    id: ID!
+    reposter: String!
+    day: BigInt!
+    proposal: String!
+    proposer: String!
+    proposalText: String!
+    instanceAddress: String!
+    blockNumber: BigInt!
+    blockTimestamp: String!
+    chainId: Int!
+    hash: String!
 }

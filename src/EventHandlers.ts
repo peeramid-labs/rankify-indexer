@@ -48,6 +48,15 @@ import {
   RankifyToken_Approval,
   RankifyToken_DelegateChanged,
   RankifyToken_DelegateVotesChanged,
+  UBIClaimed,
+  UBIProposedTime,
+  UBIVotingByAddress,
+  UBIProposalScoreUpdatedByAddress,
+  UBIProposalScoreUpdatedByProposal,
+  UBIProposalLifetimeScore,
+  UBIProposingByAddress,
+  UBIRepostByReposter,
+  UBIRepostByProposer,
   RankifyToken_EIP712DomainChanged,
   RankifyToken_OwnershipTransferred,
   RankifyToken_Transfer,
@@ -79,60 +88,78 @@ DAODistributor.Debug.handler(async ({ event, context }) => {
     distributorsId: event.params.distributorsId,
     args: event.params.args,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
   context.DAODistributor_Debug.set(entity);
 });
 
-DAODistributor.DefaultAdminDelayChangeCanceled.handler(async ({ event, context }) => {
-  const entity: DAODistributor_DefaultAdminDelayChangeCanceled = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-    chainId: event.chainId,
-  };
+DAODistributor.DefaultAdminDelayChangeCanceled.handler(
+  async ({ event, context }) => {
+    const entity: DAODistributor_DefaultAdminDelayChangeCanceled = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+    };
 
-  context.DAODistributor_DefaultAdminDelayChangeCanceled.set(entity);
-});
+    context.DAODistributor_DefaultAdminDelayChangeCanceled.set(entity);
+  },
+);
 
-DAODistributor.DefaultAdminDelayChangeScheduled.handler(async ({ event, context }) => {
-  const entity: DAODistributor_DefaultAdminDelayChangeScheduled = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    newDelay: event.params.newDelay,
-    effectSchedule: event.params.effectSchedule,
-    blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-    chainId: event.chainId,
-  };
+DAODistributor.DefaultAdminDelayChangeScheduled.handler(
+  async ({ event, context }) => {
+    const entity: DAODistributor_DefaultAdminDelayChangeScheduled = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      newDelay: event.params.newDelay,
+      effectSchedule: event.params.effectSchedule,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+    };
 
-  context.DAODistributor_DefaultAdminDelayChangeScheduled.set(entity);
-});
+    context.DAODistributor_DefaultAdminDelayChangeScheduled.set(entity);
+  },
+);
 
-DAODistributor.DefaultAdminTransferCanceled.handler(async ({ event, context }) => {
-  const entity: DAODistributor_DefaultAdminTransferCanceled = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-    chainId: event.chainId,
-  };
+DAODistributor.DefaultAdminTransferCanceled.handler(
+  async ({ event, context }) => {
+    const entity: DAODistributor_DefaultAdminTransferCanceled = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+    };
 
-  context.DAODistributor_DefaultAdminTransferCanceled.set(entity);
-});
+    context.DAODistributor_DefaultAdminTransferCanceled.set(entity);
+  },
+);
 
-DAODistributor.DefaultAdminTransferScheduled.handler(async ({ event, context }) => {
-  const entity: DAODistributor_DefaultAdminTransferScheduled = {
-    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
-    newAdmin: event.params.newAdmin,
-    acceptSchedule: event.params.acceptSchedule,
-    blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
-    chainId: event.chainId,
-  };
+DAODistributor.DefaultAdminTransferScheduled.handler(
+  async ({ event, context }) => {
+    const entity: DAODistributor_DefaultAdminTransferScheduled = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      newAdmin: event.params.newAdmin,
+      acceptSchedule: event.params.acceptSchedule,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+    };
 
-  context.DAODistributor_DefaultAdminTransferScheduled.set(entity);
-});
+    context.DAODistributor_DefaultAdminTransferScheduled.set(entity);
+  },
+);
 
 DAODistributor.DistributionAdded.handler(async ({ event, context }) => {
   const entity: DAODistributor_DistributionAdded = {
@@ -141,7 +168,9 @@ DAODistributor.DistributionAdded.handler(async ({ event, context }) => {
     distribution: event.params.distribution,
     initializer: event.params.initializer,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -153,7 +182,9 @@ DAODistributor.DistributionRemoved.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     event_id: event.params.id,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -169,7 +200,9 @@ DAODistributor.Instantiated.handler(async ({ event, context }) => {
     instances: event.params.instances,
     args: event.params.args,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.DAODistributor_Instantiated.set(instantiatedEntity);
@@ -187,7 +220,9 @@ DAODistributor.InstantiationCostChanged.handler(async ({ event, context }) => {
     event_id: event.params.id,
     cost: event.params.cost,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -201,7 +236,9 @@ DAODistributor.RoleAdminChanged.handler(async ({ event, context }) => {
     previousAdminRole: event.params.previousAdminRole,
     newAdminRole: event.params.newAdminRole,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -215,7 +252,9 @@ DAODistributor.RoleGranted.handler(async ({ event, context }) => {
     account: event.params.account,
     sender: event.params.sender,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -229,7 +268,9 @@ DAODistributor.RoleRevoked.handler(async ({ event, context }) => {
     account: event.params.account,
     sender: event.params.sender,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -249,7 +290,9 @@ DAODistributor.VersionChanged.handler(async ({ event, context }) => {
     newRequirementData_0_2: event.params.newRequirementData[0][2],
     newRequirementData_1: event.params.newRequirementData[1],
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -263,7 +306,9 @@ RankToken.ApprovalForAll.handler(async ({ event, context }) => {
     operator: event.params.operator,
     approved: event.params.approved,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -275,7 +320,9 @@ RankToken.Initialized.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     version: event.params.version,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -287,7 +334,9 @@ RankToken.RankingInstanceUpdated.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     newRankingInstance: event.params.newRankingInstance,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -301,7 +350,9 @@ RankToken.TokensLocked.handler(async ({ event, context }) => {
     event_id: event.params.id,
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -315,7 +366,9 @@ RankToken.TokensUnlocked.handler(async ({ event, context }) => {
     event_id: event.params.id,
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -331,7 +384,9 @@ RankToken.TransferBatch.handler(async ({ event, context }) => {
     ids: event.params.ids,
     values: event.params.values,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -347,7 +402,9 @@ RankToken.TransferSingle.handler(async ({ event, context }) => {
     event_id: event.params.id,
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -360,7 +417,9 @@ RankToken.URI.handler(async ({ event, context }) => {
     value: event.params.value,
     event_id: event.params.id,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -372,7 +431,9 @@ RankifyInstance.GameClosed.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -387,7 +448,9 @@ RankifyInstance.GameOver.handler(async ({ event, context }) => {
     players: event.params.players,
     scores: event.params.scores,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -400,7 +463,9 @@ RankifyInstance.GameStarted.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -413,7 +478,9 @@ RankifyInstance.LastTurn.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -426,7 +493,9 @@ RankifyInstance.OverTime.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -440,7 +509,9 @@ RankifyInstance.OwnershipTransferred.handler(async ({ event, context }) => {
     previousOwner: event.params.previousOwner,
     newOwner: event.params.newOwner,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -456,7 +527,9 @@ RankifyInstance.PlayerJoined.handler(async ({ event, context }) => {
     gmCommitment: event.params.gmCommitment,
     voterPubKey: event.params.voterPubKey,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
     transactionIndex: event.transaction.transactionIndex,
@@ -472,7 +545,9 @@ RankifyInstance.PlayerLeft.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     player: event.params.player,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -489,7 +564,9 @@ RankifyInstance.ProposalScore.handler(async ({ event, context }) => {
     proposal: event.params.proposal,
     score: event.params.score,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -508,7 +585,9 @@ RankifyInstance.ProposalSubmitted.handler(async ({ event, context }) => {
     gmSignature: event.params.gmSignature,
     proposerSignature: event.params.proposerSignature,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -524,7 +603,9 @@ RankifyInstance.RankTokenExited.handler(async ({ event, context }) => {
     amount: event.params.amount,
     _toMint: event.params._toMint,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -537,7 +618,9 @@ RankifyInstance.RegistrationOpen.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -556,7 +639,9 @@ RankifyInstance.VoteSubmitted.handler(async ({ event, context }) => {
     voterSignature: event.params.voterSignature,
     ballotHash: event.params.ballotHash,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -574,7 +659,9 @@ RankifyInstance.GameCreated.handler(async ({ event, context }) => {
     proposingPhaseDuration: event.params.proposingPhaseDuration,
     votePhaseDuration: event.params.votePhaseDuration,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -587,7 +674,9 @@ RankifyInstance.RequirementsConfigured.handler(async ({ event, context }) => {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     gameId: event.params.gameId,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     srcAddress: event.srcAddress,
     ethValues_have: event.params.config[0][0],
     ethValues_lock: event.params.config[0][1],
@@ -626,7 +715,9 @@ RankifyInstance.ProposingStageEnded.handler(async ({ event, context }) => {
     numProposals: event.params.numProposals,
     proposals: event.params.proposals,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -647,7 +738,9 @@ RankifyInstance.VotingStageResults.handler(async ({ event, context }) => {
     finalizedVotingMatrix: event.params.finalizedVotingMatrix,
     permutation: event.params.permutation,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -661,7 +754,9 @@ RankifyInstance.StaleGameEnded.handler(async ({ event, context }) => {
     gameId: event.params.gameId,
     winner: event.params.winner,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
     srcAddress: event.srcAddress,
   };
@@ -675,7 +770,9 @@ RankifyToken.Approval.handler(async ({ event, context }) => {
     spender: event.params.spender,
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -689,7 +786,9 @@ RankifyToken.DelegateChanged.handler(async ({ event, context }) => {
     fromDelegate: event.params.fromDelegate,
     toDelegate: event.params.toDelegate,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -703,7 +802,9 @@ RankifyToken.DelegateVotesChanged.handler(async ({ event, context }) => {
     previousVotes: event.params.previousVotes,
     newVotes: event.params.newVotes,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -714,7 +815,9 @@ RankifyToken.EIP712DomainChanged.handler(async ({ event, context }) => {
   const entity: RankifyToken_EIP712DomainChanged = {
     id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -727,7 +830,9 @@ RankifyToken.OwnershipTransferred.handler(async ({ event, context }) => {
     previousOwner: event.params.previousOwner,
     newOwner: event.params.newOwner,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -741,7 +846,9 @@ RankifyToken.Transfer.handler(async ({ event, context }) => {
     to: event.params.to,
     value: event.params.value,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -769,7 +876,9 @@ Governor.ProposalCreated.handler(async ({ event, context }) => {
     executed: false,
     queued: false,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
 
@@ -787,12 +896,16 @@ Governor.VoteCast.handler(async ({ event, context }) => {
     weight: event.params.weight,
     reason: event.params.reason,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.GovernorVote.set(vote);
 
-  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  let proposal = await context.GovernorProposal.get(
+    event.params.proposalId.toString(),
+  );
   if (proposal) {
     const currentForVotes = proposal.forVotes || BigInt(0);
     const currentAgainstVotes = proposal.againstVotes || BigInt(0);
@@ -807,7 +920,10 @@ Governor.VoteCast.handler(async ({ event, context }) => {
     } else if (Number(event.params.support) === 2) {
       updatedProposal.abstainVotes = currentAbstainVotes + event.params.weight;
     }
-    if (proposal.state === "Pending" && BigInt(event.block.number) >= proposal.voteStart) {
+    if (
+      proposal.state === "Pending" &&
+      BigInt(event.block.number) >= proposal.voteStart
+    ) {
       updatedProposal.state = "Active";
     }
     context.GovernorProposal.set(updatedProposal);
@@ -815,14 +931,18 @@ Governor.VoteCast.handler(async ({ event, context }) => {
 });
 
 Governor.ProposalCanceled.handler(async ({ event, context }) => {
-  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  let proposal = await context.GovernorProposal.get(
+    event.params.proposalId.toString(),
+  );
   if (proposal) {
     const updatedProposal = {
       ...proposal,
       state: "Canceled",
       canceled: true,
       blockNumber: BigInt(event.block.number),
-      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
       chainId: event.chainId,
     };
     context.GovernorProposal.set(updatedProposal);
@@ -830,7 +950,9 @@ Governor.ProposalCanceled.handler(async ({ event, context }) => {
 });
 
 Governor.ProposalQueued.handler(async ({ event, context }) => {
-  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  let proposal = await context.GovernorProposal.get(
+    event.params.proposalId.toString(),
+  );
   if (proposal) {
     const updatedProposal = {
       ...proposal,
@@ -838,7 +960,9 @@ Governor.ProposalQueued.handler(async ({ event, context }) => {
       eta: event.params.eta,
       queued: true,
       blockNumber: BigInt(event.block.number),
-      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
       chainId: event.chainId,
     };
     context.GovernorProposal.set(updatedProposal);
@@ -846,14 +970,18 @@ Governor.ProposalQueued.handler(async ({ event, context }) => {
 });
 
 Governor.ProposalExecuted.handler(async ({ event, context }) => {
-  let proposal = await context.GovernorProposal.get(event.params.proposalId.toString());
+  let proposal = await context.GovernorProposal.get(
+    event.params.proposalId.toString(),
+  );
   if (proposal) {
     const updatedProposal = {
       ...proposal,
       state: "Executed",
       executed: true,
       blockNumber: BigInt(event.block.number),
-      blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
       chainId: event.chainId,
     };
     context.GovernorProposal.set(updatedProposal);
@@ -867,7 +995,9 @@ Governor.VotingDelaySet.handler(async ({ event, context }) => {
     oldVotingDelay: event.params.oldVotingDelay,
     newVotingDelay: event.params.newVotingDelay,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.GovernorVotingDelaySet.set(entity);
@@ -880,7 +1010,9 @@ Governor.VotingPeriodSet.handler(async ({ event, context }) => {
     oldVotingPeriod: event.params.oldVotingPeriod,
     newVotingPeriod: event.params.newVotingPeriod,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.GovernorVotingPeriodSet.set(entity);
@@ -893,7 +1025,9 @@ Governor.ProposalThresholdSet.handler(async ({ event, context }) => {
     oldProposalThreshold: event.params.oldProposalThreshold,
     newProposalThreshold: event.params.newProposalThreshold,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.GovernorProposalThresholdSet.set(entity);
@@ -906,8 +1040,175 @@ Governor.QuorumNumeratorUpdated.handler(async ({ event, context }) => {
     oldQuorumNumerator: event.params.oldQuorumNumerator,
     newQuorumNumerator: event.params.newQuorumNumerator,
     blockNumber: BigInt(event.block.number),
-    blockTimestamp: new Date(Number(event.block.timestamp) * 1000).toISOString(),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
     chainId: event.chainId,
   };
   context.GovernorQuorumNumeratorUpdated.set(entity);
+});
+
+// UBI Event Handlers
+RankifyInstance.Claimed.handler(async ({ event, context }) => {
+  const entity: UBIClaimed = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    user: event.params.user,
+    amount: event.params.amount,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIClaimed.set(entity);
+});
+
+RankifyInstance.ProposedTime.handler(async ({ event, context }) => {
+  const entity: UBIProposedTime = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    proposalHash: event.params.proposalHash,
+    newTimesProposed: event.params.newTimesProposed,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIProposedTime.set(entity);
+});
+
+RankifyInstance.VotingByAddress.handler(async ({ event, context }) => {
+  const entity: UBIVotingByAddress = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    participant: event.params.participant,
+    day: event.params.day,
+    proposal: event.params.proposal,
+    amount: event.params.amount,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIVotingByAddress.set(entity);
+});
+
+RankifyInstance.ProposalScoreUpdatedByAddress.handler(
+  async ({ event, context }) => {
+    const entity: UBIProposalScoreUpdatedByAddress = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      dailyScore: event.params.dailyScore,
+      day: event.params.day,
+      proposer: event.params.proposer,
+      proposal: event.params.proposal,
+      instanceAddress: event.srcAddress,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+      hash: event.transaction.hash,
+    };
+    context.UBIProposalScoreUpdatedByAddress.set(entity);
+  },
+);
+
+RankifyInstance.ProposalScoreUpdatedByProposal.handler(
+  async ({ event, context }) => {
+    const entity: UBIProposalScoreUpdatedByProposal = {
+      id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+      dailyScore: event.params.dailyScore,
+      day: event.params.day,
+      proposal: event.params.proposal,
+      proposer: event.params.proposer,
+      instanceAddress: event.srcAddress,
+      blockNumber: BigInt(event.block.number),
+      blockTimestamp: new Date(
+        Number(event.block.timestamp) * 1000,
+      ).toISOString(),
+      chainId: event.chainId,
+      hash: event.transaction.hash,
+    };
+    context.UBIProposalScoreUpdatedByProposal.set(entity);
+  },
+);
+
+RankifyInstance.ProposalLifetimeScore.handler(async ({ event, context }) => {
+  const entity: UBIProposalLifetimeScore = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    lifeTimeScore: event.params.lifeTimeScore,
+    proposedTimes: event.params.proposedTimes,
+    repostedTimes: event.params.repostedTimes,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIProposalLifetimeScore.set(entity);
+});
+
+RankifyInstance.ProposingByAddress.handler(async ({ event, context }) => {
+  const entity: UBIProposingByAddress = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    proposer: event.params.proposer,
+    day: event.params.day,
+    proposal: event.params.proposal,
+    proposalText: event.params.proposalText,
+    scoreWhenProposed: event.params.scoreWhenProposed,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIProposingByAddress.set(entity);
+});
+
+RankifyInstance.RepostByReposter.handler(async ({ event, context }) => {
+  const entity: UBIRepostByReposter = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    proposer: event.params.proposer,
+    day: event.params.day,
+    proposal: event.params.proposal,
+    reposter: event.params.reposter,
+    proposalText: event.params.proposalText,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIRepostByReposter.set(entity);
+});
+
+RankifyInstance.RepostByProposer.handler(async ({ event, context }) => {
+  const entity: UBIRepostByProposer = {
+    id: `${event.chainId}_${event.block.number}_${event.logIndex}`,
+    reposter: event.params.reposter,
+    day: event.params.day,
+    proposal: event.params.proposal,
+    proposer: event.params.proposer,
+    proposalText: event.params.proposalText,
+    instanceAddress: event.srcAddress,
+    blockNumber: BigInt(event.block.number),
+    blockTimestamp: new Date(
+      Number(event.block.timestamp) * 1000,
+    ).toISOString(),
+    chainId: event.chainId,
+    hash: event.transaction.hash,
+  };
+  context.UBIRepostByProposer.set(entity);
 });
